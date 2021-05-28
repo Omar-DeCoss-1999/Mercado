@@ -24,7 +24,7 @@ section .imgBx:before{
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(225deg,#008B8B,#32CD32);
+  background: linear-gradient(225deg,#ff0000,#2db0d8);
   z-index: 1;
   mix-blend-mode: screen;
 }
@@ -47,12 +47,12 @@ section .contentBx .formBx{
   width: 50%;
 }
 section .contentBx .formBx h2{
-  color: #607d8b;
+  color: #000;
   font-weight: 600;
   font-size: 1.5em;
   text-transform: uppercase;
   margin-bottom: 20px;
-  border-bottom: 4px solid #32CD32;
+  border-bottom: 4px solid #ff0000;
   display: inline-block;
   letter-spacing: 1px;
 }
@@ -73,23 +73,23 @@ section .contentBx .formBx .inputBx input{
   padding: 10px 20px;
   outline: none;
   font-weight: 400;
-  border: 1px solid #607d8b;
+  border: 1px solid #ff0000;
   font-size: 16px;
   letter-spacing: 1px;
-  color: #607d8b;
+  color: #000;
   background: transparent;
   border-radius: 30px;
 }
 section .contentBx .formBx .inputBx input[type="submit"]{
-  background: #32CD32;
-  color: #fff;
+  background:#db2f2f;
+  color: azure;
   outline: none;
   border: none;
   font-weight: 500;
   cursor: pointer;
 }
 section .contentBx .formBx .inputBx input[type="submit"]:hover{
-  background: #00FF00;
+  background: #ff0000;
 }
 section .contentBx .formBx .remember{
   margin-bottom: 10px;
@@ -98,10 +98,10 @@ section .contentBx .formBx .remember{
   font-size: 14px;
 }
 section .contentBx .formBx .inputBx p{
-  color: #607d8b;
+  color: #000;
 }
 section .contentBx .formBx .inputBx p a{ 
-  color: #32CD32;
+  color: #ff0000;
 }
 @media (max-width: 768px) {
   section .imgBx{
