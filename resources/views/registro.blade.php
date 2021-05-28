@@ -15,37 +15,47 @@
         <div class="contentBx">
           <div class="formBx">
             <h2>Registrate</h2>
-            <form action="" method="post">
+             @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+            <form action="/register" method="POST">
+            @csrf
               <div class="inputBx">
                 <span>Nombre del usuario</span>
-                <input type="text" name="" id="" placeholder="Ingrese su nombre">
+                <input type="text" name="nombre" placeholder="Ingrese su nombre">
               </div>
               <div class="inputBx">
                 <span>Apellido paterno</span>
-                <input type="text" name="" id="" placeholder="Ingrese su apellido paterno">
+                <input type="text" name="a_paterno" placeholder="Ingrese su apellido paterno">
               </div>
               <div class="inputBx">
                 <span>Apellido materno</span>
-                <input type="text" name="" id="" placeholder="Ingrese su apellido materno">
+                <input type="text" name="a_materno" placeholder="Ingrese su apellido materno">
               </div>
               <div class="inputBx">
                 <span>Correo electronico</span>
-                <input type="email" name="" id="" placeholder="Ingrese su correo electronico">
+                <input type="email" name="correo" placeholder="Ingrese su correo electronico">
               </div>
               <div class="inputBx">
                 <span>Foto del usuario</span>
-                <input type="file" name="" id="">
+                <input type="file" name="imagen">
               </div>
               <div class="inputBx">
                 <span>Contraseña</span>
-                <input type="password" name="" id="" placeholder="Ingrese su contraseña">
+                <input type="password" name="password" placeholder="Ingrese su contraseña">
               </div>
               <div class="inputBx">
                 <span>Verifique su contraseña</span>
-                <input type="password" name="" id="" placeholder="Escriba nuevamente su contraseña">
+                <input type="password" name="password2" placeholder="Escriba nuevamente su contraseña">
               </div>
               <div class="inputBx">
-                <input type="submit" name="" id="" value="Registrarse">
+                <input type="submit" value="Registrarse">
               </div>
               <div class="inputBx">
                 <p>¿Ya tienes una cuenta? <a href="login">Inicia sesión</a></p>

@@ -16,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('login', function () {
-    return view('login');
-});
-Route::get('register', function () {
-    return view('registro');
+
+Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
+Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
+
+Route::get('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registroNuevo');
+Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD');
+// Route::get('register', function () {
+//     return view('registro');
+// });
+
+Route::get('categorias', function () { //ESTO SOLO ES DE PREUBA PARA VER SI FUNCIONA EL INICIO DE SESIÓN
+    return view('Tablero.presentacion');
 });
