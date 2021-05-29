@@ -16,11 +16,11 @@ class CreateProductos extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('nombre', 20);
-            $table->mediumText('descripcion', 100);
+            $table->mediumText('descripcion');
             $table->float('precio');
             $table->string('imagen', 100);
             $table->tinyInteger('concesionado');
-            $table->string('motivo', 100);            
+            $table->string('motivo', 100);
             $table->foreignId('id_categorias')->reference('id')->constrained('categorias')->onDelete('cascade');
             $table->foreignId('id_usuarios')->reference('id')->constrained('usuarios')->onDelete('cascade');
         });
