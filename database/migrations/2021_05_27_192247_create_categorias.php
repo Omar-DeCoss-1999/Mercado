@@ -16,7 +16,7 @@ class CreateCategorias extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('nombre', 20);
-            $table->mediumText('descripcion', 100);
+            $table->mediumText('descripcion');
             $table->string('imagen', 100);
             $table->tinyInteger('activa');
         });

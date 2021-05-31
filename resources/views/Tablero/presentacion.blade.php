@@ -8,8 +8,8 @@
 </head>
 <body>
     <center>
-        <h1>Funcionooooooooooooo</h1>
-        <iframe width="420" height="420" src="https://www.youtube.com/embed/k3yivEtcGbU"></iframe>
+        <h1>¡Bienvenido!  {{ auth()->user()->nombre }} </h1>
+        <h1>Tu rol es {{ auth()->user()->rol }} </h1>
     </center>
 </body>
 </html>
