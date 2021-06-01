@@ -17,7 +17,7 @@ class ProductosController extends Controller
     public function index()
     {
         $producto = Producto::all();
-        return view('Producto.index', compact('producto'));
+        return view('Productos.index', compact('producto'));
 
         $prod = Producto::all();
         return view('Roles.anonimo', compact('prod'));
@@ -32,7 +32,7 @@ class ProductosController extends Controller
     {
         $id_categoria = Categoria::all();
         $id_usuario = Usuario::all();
-        return view('productos.crearProducto', compact('id_categoria', 'id_usuario'));
+        return view('Productos.create', compact('id_categoria', 'id_usuario'));
     }
 
     /**
@@ -101,8 +101,9 @@ class ProductosController extends Controller
             $new_productos['imagen'] = $nombre_imagen;
         }
         $new_producto = Producto::find($id);
-        $new_producto->nombre = $request->input('nombreP');
-        $new_producto->descripcion = $request->input('descripcionP');
+        $new_producto->nombre = $request->input('nombre');
+        $new_producto->descripcion = $request->input('descripcion');
+        $new_producto->precio = $request->input('precio');
         $new_producto->save();
         return redirect('/productos');
     }
