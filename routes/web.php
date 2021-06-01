@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Tablero.index');
+    return view('Roles.anonimo');
 });
 
 Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
 Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
+Route::post('salir', 'App\Http\Controllers\AutenticarIngreso@salir');
 
 Route::get('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD');
@@ -26,6 +28,8 @@ Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD'
 //     return view('registro');
 // });
 
-Route::get('categorias', function () { //ESTO SOLO ES DE PREUBA PARA VER SI FUNCIONA EL INICIO DE SESIÓN
-    return view('Tablero.presentacion');
+Route::get('inicio', function () { //ESTO SOLO ES DE PREUBA PARA VER SI FUNCIONA EL INICIO DE SESIÓN
+    return view('Roles.supervisor');
 });
+
+Route::resource('categorias', CategoriasController::class);

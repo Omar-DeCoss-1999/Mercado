@@ -27,7 +27,7 @@
             <form action="/register" method="POST">
             @csrf
               <div class="inputBx">
-                <span>Nombre del usuario</span>
+                <span>Nombre</span>
                 <input type="text" name="nombre" placeholder="Ingrese su nombre">
               </div>
               <div class="inputBx">
