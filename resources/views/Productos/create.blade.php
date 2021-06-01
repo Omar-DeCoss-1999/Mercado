@@ -43,7 +43,7 @@
                 <strong>Identificador de categorias:</strong>
                 <select class="form-control" name="id_categorias" id="id_categorias">
                     @forelse ($id_categoria as $categoria)
-                    <option>{{$categoria->id}}</option>
+                    <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                     @empty
                     <option>No existen categorias</option>
                     @endforelse
@@ -55,7 +55,7 @@
                 <strong>Identificador de usuarios:</strong>
                 <select class="form-control" name="id_usuarios" id="id_usuarios">
                     @forelse ($id_usuario as $usuario)
-                    <option>{{$usuario->id}}</option>
+                    <option value="{{$usuario->id}}">{{$usuario->nombre}}</option>
                     @empty
                     <option>No existen usuarios</option>
                     @endforelse
