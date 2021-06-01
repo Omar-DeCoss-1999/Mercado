@@ -1,7 +1,7 @@
 @extends('Tablero.index')
 
 @section('nombreU')
-{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})
+<span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})</span>
 @endsection
 
 @section('fotoP')

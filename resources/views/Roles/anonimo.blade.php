@@ -1,7 +1,7 @@
 @extends('Tablero.index')
 
 @section('nombreU')
-Anónimo
+<span class="mr-2 d-none d-lg-inline text-gray-600 small">Anónimo</span>
 @endsection
 
 @section('fotoP')
