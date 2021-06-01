@@ -67,8 +67,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav" class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
-
+                <nav style="background-color:#00838f;" class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -157,11 +156,6 @@
                     </ul>
 
                 </nav>
-<!--                 <div class="container-fluid">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 text-gray-800">Todos nuestros productos</h1>
-                    </div>
-                </div> -->
                 @yield('cartas')
                 <!-- /.container-fluid -->
             </div>
