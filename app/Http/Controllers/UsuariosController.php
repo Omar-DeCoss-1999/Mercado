@@ -15,7 +15,8 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return view('Usuarios.index');
+        $usuario = Usuario::all();
+        return view('Usuarios.index',compact('usuario'));
     }
 
     /**
@@ -52,7 +53,7 @@ class UsuariosController extends Controller
         $registrar->fill($usuario_nuevo);
         $registrar->activo = 1;
         $registrar->save();
-        return redirect('/usuario')->with('success', 'Te has registrado con exito, ¡Bienvenido!');
+        return redirect('/usuarios')->with('success', 'Te has registrado con exito, ¡Bienvenido!');
     }
 
     /**
@@ -107,7 +108,7 @@ class UsuariosController extends Controller
         $registrar = Usuario::find($id);
         $registrar->fill($valores);
         $registrar->save();
-        return redirect('/usuario')->with('mensaje', 'Se actualizo el usuario');
+        return redirect('/usuarios')->with('mensaje', 'Se actualizo el usuario');
     }
 
     /**
@@ -121,9 +122,9 @@ class UsuariosController extends Controller
         try {
             $usuario = Usuario::find($id);
             $usuario->delete();
-            return redirect('/usuario')->with('mensaje', 'Se elimino el usuario');
+            return redirect('/usuarios')->with('mensaje', 'Se elimino el usuario');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('/usuario')->with('error', $e->getMessage());
+            return redirect('/usuarios')->with('error', $e->getMessage());
         }
     }
 }
