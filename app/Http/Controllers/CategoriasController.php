@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Producto;
 class CategoriasController extends Controller
 {
     /**
@@ -15,10 +16,11 @@ class CategoriasController extends Controller
     public function index()
     {
         $category = Categoria::all();
+        $prod = Producto::all();
+        if(Auth::user() == null){
+            return view('Roles.anonimo', compact('category', 'prod'));
+        }
         return view('Categorias.index', compact('category'));
-
-        $cat = Categoria::all();
-        return view('Roles.anonimo', compact('cat'));
     }
 
     /**

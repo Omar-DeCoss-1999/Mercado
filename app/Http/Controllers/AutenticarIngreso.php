@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
+use PhpParser\Node\Stmt\Switch_;
 
 class AutenticarIngreso extends Controller
 {
@@ -21,9 +22,8 @@ class AutenticarIngreso extends Controller
         ]);
 
         if (Auth::attempt($credentials)){
-            return redirect('categorias');
+            return redirect('inicio');
         }
-
         return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
     }
 

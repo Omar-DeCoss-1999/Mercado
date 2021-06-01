@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Roles.anonimo');
+    return redirect('/categorias');
 });
 
 Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');

@@ -17,7 +17,7 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            @forelse ($cat as $categorias)
+            @forelse ($category as $categorias)
             <a class="collapse-item" href="">{{$categorias->nombre}}</a>
             @empty
             <a class="collapse-item" href="">Sin registro</a>
