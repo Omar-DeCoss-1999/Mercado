@@ -99,7 +99,7 @@
             <td>{{$productos->descripcion}}</td>
             <td>{{$productos->precio}}</td>
             <td>
-                <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Mostrar</a>
+                <a class="btn btn-info" href="/productos/{{$productos->id}}/">Mostrar</a>
                 <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
             </td>
         </tr>

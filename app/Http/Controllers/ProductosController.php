@@ -10,6 +10,7 @@ use App\Models\ProductosConsignados;
 use App\Models\ProductosEnCategoria;
 use Illuminate\Support\Facades\Auth;
 
+
 class ProductosController extends Controller
 {
     /**
@@ -19,16 +20,13 @@ class ProductosController extends Controller
      */
     public function index($id_categoria)
     {
-        /*         $producto = Producto::all();
-        return view('Productos.index', compact('producto')); */
-        // if(Auth::user()->rol == null || Auth::user()->rol == 'Cliente'){
-        $producto = ProductosEnCategoria::all()
+
+       $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria);
-        // }
-        return view('Productos.index', compact('producto', 'id_categoria'));
-    }
+         return view('Productos.index', compact('producto', 'id_categoria'));
 
+    }
     public function buscarpor(Request $request, $id_categoria)
     {
         $producto = ProductosEnCategoria::all()

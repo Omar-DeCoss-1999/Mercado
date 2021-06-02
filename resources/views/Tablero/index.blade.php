@@ -50,6 +50,7 @@
             <div class="sidebar-heading">
                 Catalogo
             </div>
+<<<<<<< HEAD
             @if(Auth::user() == null)
                 @yield('desplegable')
             @else
@@ -91,6 +92,7 @@
                 </div>
             </li>
             @endif
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -109,7 +111,6 @@
 
                 <!-- Topbar -->
                 <nav style="background-color:#00838f;" class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -117,7 +118,20 @@
 
                     <!-- Topbar Search -->
                     @yield('buscar')
-                    <!-- Topbar Navbar -->
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ route('productos.index') }}" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar por.."
+                                aria-label="Search" aria-describedby="basic-addon2" name="busqueda" value="{{$busqueda}}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -214,11 +228,6 @@
                     </ul>
 
                 </nav>
-                <!--                 <div class="container-fluid">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 text-gray-800">Todos nuestros productos</h1>
-                    </div>
-                </div> -->
                 @yield('cartas')
                 <!-- /.container-fluid -->
             </div>

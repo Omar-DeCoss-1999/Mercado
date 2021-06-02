@@ -27,19 +27,6 @@
 </li>
 @endsection
 
-@section('usuarioOpciones')
-<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-    <a class="dropdown-item" href="login">
-        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-        Iniciar sesión
-    </a>
-    <a class="dropdown-item" href="register">
-        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-        Registrarse
-    </a>
-</div>
-@endsection
-
 @section('cartas')
 <table class="table col-12 table-responsive">
     <thead>
