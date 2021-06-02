@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Usuario;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
@@ -14,13 +15,27 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $producto = Producto::all();
-        return view('Productos.index', compact('producto'));
-
-        $prod = Producto::all();
-        return view('Roles.anonimo', compact('prod'));
+        $busqueda = trim($request->GET('busqueda'));
+        if($busqueda == ''){
+          $producto = Producto::all();
+          return view('Productos.index', compact('producto','busqueda'));
+        } else {
+          $producto = DB::table('productos')
+                      ->select('imagen','nombre','descripcion','precio')
+                      ->where('nombre','LIKE','%'.$busqueda.'%')
+                      ->orWhere('descripcion','LIKE','%'.$busqueda.'%')
+                      ->orderBy('nombre','asc')
+                      ->paginate(3);
+          return view('Productos.index', compact('producto','busqueda'));
+        }
+        //$producto = Producto::all();
+        //return view('Productos.index', compact('producto','busqueda'));
+        //$producto = Producto::all();
+        //return view('Productos.index', compact('producto'));
+        //$prod = Producto::all();
+        //return view('Roles.anonimo', compact('prod'));
     }
 
     /**

@@ -21,13 +21,7 @@
             <td>{{$productos->descripcion}}</td>
             <td>{{$productos->precio}}</td>
             <td>
-                <form action="{{ route('productos.destroy', $productos->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('productos.show', $productos->id) }}">Mostrar</a>
-                    <a class="btn btn-primary" href="{{ route('productos.edit', $productos->id) }}">Editar</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
+
             </td>
         </tr>
         @empty
