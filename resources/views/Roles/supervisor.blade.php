@@ -1,11 +1,11 @@
 @extends('Tablero.index')
 
 @section('nombreU')
-<span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})</span>
+<span style="color:#fff;" class="mr-2 d-none d-lg-inline small">{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})</span>
 @endsection
 
 @section('fotoP')
-<img class="img-profile rounded-circle" src="<?php echo asset('/perfil_img/' . $usuarios->imagen) ?>">
+<img class="img-profile rounded-circle" src="img/undraw_profile.svg">
 @endsection
 
 @section('opciones')
@@ -17,8 +17,8 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Ver</a>
-            <a class="collapse-item" href="">Agregar</a>
+            <a class="collapse-item" href="{{route('categorias.index')}}">Ver</a>
+            <a class="collapse-item" href="{{route('categorias.create')}}">Agregar</a>
         </div>
     </div>
 </li>
@@ -30,8 +30,8 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Ver</a>
-            <a class="collapse-item" href="">Agregar</a>
+            <a class="collapse-item" href="{{route('productos.index')}}">Ver</a>
+            <a class="collapse-item" href="{{route('productos.create')}}">Agregar</a>
         </div>
     </div>
 </li>
@@ -44,8 +44,8 @@
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Ver</a>
-            <a class="collapse-item" href="">Agregar</a>
+            <a class="collapse-item" href="{{route('usuarios.index')}}">Ver</a>
+            <a class="collapse-item" href="{{route('usuarios.create')}}">Agregar</a>
         </div>
     </div>
 </li>
@@ -69,22 +69,22 @@
     <div class="card">
         <div class="content">
             <h3>Productos</h3>
-            <p>Actualmente se encuentran: <strong>{{Producto::count()}}</strong> productos registrados en el sistema</p>
-            <a href="">Ver</a>
+            <p>Actualmente se encuentran: <strong>{{$contaP}}</strong> productos registrados en el sistema</p>
+            <a href="{{route('productos.index')}}">Ver</a>
         </div>
     </div>
     <div class="card2">
         <div class="content">
             <h3>Categorías</h3>
-            <p>Actualmente se encuentran: <strong>{{Categoria::count()}}</strong> categorías registrados en el sistema</p>
-            <a href="">Ver</a>
+            <p>Actualmente se encuentran: <strong>{{$contaC}}</strong> categorías registrados en el sistema</p>
+            <a href="{{route('categorias.index')}}">Ver</a>
         </div>
     </div>
     <div class="card3">
         <div class="content">
             <h3>Usuarios</h3>
-            <p>Actualmente se encuentran: <Strong>{{Usuario::count()}}</Strong> usuarios registrados en el sistema</p>
-            <a href="">Ver</a>
+            <p>Actualmente se encuentran: <Strong>{{$contaU}}</Strong> usuarios registrados en el sistema</p>
+            <a href="{{route('usuarios.index')}}">Ver</a>
         </div>
     </div>
 </div>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
-use PhpParser\Node\Stmt\Switch_;
+use App\Models\Categoria;
 
 class AutenticarIngreso extends Controller
 {
@@ -20,9 +21,11 @@ class AutenticarIngreso extends Controller
             'correo' => 'required|email|string',
             'password' => 'required|string'
         ]);
-
+        $contaP = Producto::count();
+        $contaC = Categoria::count();
+        $contaU = Usuario::count();
         if (Auth::attempt($credentials)){
-            return redirect('inicio');
+            return view('Roles.supervisor', compact('contaP', 'contaC', 'contaU'));
         }
         return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
     }
