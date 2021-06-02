@@ -30,10 +30,10 @@ Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD'
 //     return view('registro');
 // });
 
-Route::get('inicio', function () { //ESTO SOLO ES DE PREUBA PARA VER SI FUNCIONA EL INICIO DE SESIÓN
+Route::get('inicio', function () {
     return view('Roles.supervisor');
 });
 
-Route::resource('categorias', CategoriasController::class);
-Route::resource('usuarios', UsuariosController::class);
-Route::resource('productos', ProductosController::class);
+Route::resource('/categorias', CategoriasController::class);
+Route::resource('/usuarios', UsuariosController::class);
+Route::resource('/productos', ProductosController::class);

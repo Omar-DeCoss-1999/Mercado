@@ -18,9 +18,6 @@ class ProductosController extends Controller
     {
         $producto = Producto::all();
         return view('Productos.index', compact('producto'));
-
-        $prod = Producto::all();
-        return view('Roles.anonimo', compact('prod'));
     }
 
     /**

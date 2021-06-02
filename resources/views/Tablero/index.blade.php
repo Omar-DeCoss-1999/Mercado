@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.css">
     <!-- Custom styles for this template-->
     <link href="<?php echo asset('css/sb-admin-2.min.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo asset('css/style-cart.css')?>">
 
 </head>
 
@@ -189,7 +190,7 @@
                 <div class="modal-body">Seleccion "Salir" si estas seguro de cerrar sesión.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Regresar</button>
-                    <a class="btn btn-primary" href="salir">Salir</a>
+                    <a class="btn btn-primary" href="/">Salir</a>
                 </div>
             </div>
         </div>
