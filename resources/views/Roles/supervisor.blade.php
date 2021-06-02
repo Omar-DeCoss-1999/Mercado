@@ -17,8 +17,7 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('categorias.index')}}">Ver</a>
-            <a class="collapse-item" href="{{route('categorias.create')}}">Agregar</a>
+            <a class="collapse-item" href="/">Ver</a>
         </div>
     </div>
 </li>
@@ -30,8 +29,7 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('productos.index')}}">Ver</a>
-            <a class="collapse-item" href="{{route('productos.create')}}">Agregar</a>
+            <a class="collapse-item" href="/">Ver</a>
         </div>
     </div>
 </li>
@@ -44,8 +42,7 @@
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('usuarios.index')}}">Ver</a>
-            <a class="collapse-item" href="{{route('usuarios.create')}}">Agregar</a>
+            <a class="collapse-item" href="usuarios">Ver</a>
         </div>
     </div>
 </li>
@@ -70,21 +67,21 @@
         <div class="content">
             <h3>Productos</h3>
             <p>Actualmente se encuentran: <strong>{{$contaP}}</strong> productos registrados en el sistema</p>
-            <a href="{{route('productos.index')}}">Ver</a>
+            <a href="/">Ver</a>
         </div>
     </div>
     <div class="card2">
         <div class="content">
             <h3>Categorías</h3>
             <p>Actualmente se encuentran: <strong>{{$contaC}}</strong> categorías registrados en el sistema</p>
-            <a href="{{route('categorias.index')}}">Ver</a>
+            <a href="/">Ver</a>
         </div>
     </div>
     <div class="card3">
         <div class="content">
             <h3>Usuarios</h3>
             <p>Actualmente se encuentran: <Strong>{{$contaU}}</Strong> usuarios registrados en el sistema</p>
-            <a href="{{route('usuarios.index')}}">Ver</a>
+            <a href="usuarios">Ver</a>
         </div>
     </div>
 </div>

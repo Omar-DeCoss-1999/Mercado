@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Usuario;
 use App\Models\Categoria;
+use App\Models\ProductosConsignados;
+use App\Models\ProductosEnCategoria;
+use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 {
@@ -14,12 +17,26 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_categoria)
     {
-        $producto = Producto::all();
-        return view('Productos.index', compact('producto'));
+        /*         $producto = Producto::all();
+        return view('Productos.index', compact('producto')); */
+        // if(Auth::user()->rol == null || Auth::user()->rol == 'Cliente'){
+        $producto = ProductosEnCategoria::all()
+            ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+            ->where('id_categorias', $id_categoria);
+        // }
+        return view('Productos.index', compact('producto', 'id_categoria'));
     }
 
+    public function buscarpor(Request $request, $id_categoria)
+    {
+        $producto = ProductosEnCategoria::all()
+            ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+            ->where('id_categorias', $id_categoria)
+            ->where('productos.nombre', 'like', $request->input('busqueda'));
+        return view('Productos.index', compact('producto', 'id_categoria'));
+    }
     /**
      * Show the form for creating a new resource.
      *

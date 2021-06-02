@@ -16,10 +16,10 @@ class CategoriasController extends Controller
     public function index()
     {
         $category = Categoria::all();
-        $prod = Producto::all();
+/*         $prod = Producto::all();
         if(Auth::user() == null){
             return view('Roles.anonimo', compact('category', 'prod'));
-        }
+        } */
         return view('Categorias.index', compact('category'));
     }
 
@@ -42,12 +42,19 @@ class CategoriasController extends Controller
     public function store(Request $request)
     {
         $categoria = new Categoria();
+        $imagen = $request->file('imagen');
+        if (!is_null($imagen)){
+            $ruta_imagen = public_path('images/images_categorias/');
+            $nombre_imagen = $imagen->getClientOriginalName();
+            $imagen->move($ruta_imagen,$nombre_imagen);
+            $categoria['imagen']=$nombre_imagen;
+        }
         $categoria->nombre=$request->input('nombre');
         $categoria->descripcion=$request->input('descripcion');
-        $categoria->imagen = "";
+        $categoria->imagen = $request->input('imagen');
         $categoria->activa = 1;
         $categoria->save();
-        return redirect('/categorias');
+        return redirect('/');
     }
 
     /**
@@ -59,7 +66,7 @@ class CategoriasController extends Controller
     public function show($id)
     {
         $categoria = Categoria::find($id);
-        return view('Categorias.show',compact('categoria','id'));
+        return view('Categorias.show',compact('categoria'));
     }
 
     /**
@@ -86,10 +93,10 @@ class CategoriasController extends Controller
         $categoria = Categoria::find($id);
         $categoria->nombre=$request->input('nombre');
         $categoria->descripcion=$request->input('descripcion');
-        $categoria->imagen = "";
+        $categoria->imagen = $request->input('imagen');
         $categoria->activa = 1;
         $categoria->save();
-        return redirect('/categorias');
+        return redirect('/');
     }
 
     /**

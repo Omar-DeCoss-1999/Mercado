@@ -11,7 +11,7 @@
         </div>
     </div>
 </div>
-<form action="{{ route('categorias.store') }}" method="POST">
+<form action="/categorias" method="POST">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -16,7 +16,7 @@ class UsuariosController extends Controller
     public function index()
     {
         $usuario = Usuario::all();
-        return view('Usuarios.index',compact('usuario'));
+        return view('Usuarios.index', compact('usuario'));
     }
 
     /**
@@ -108,7 +108,7 @@ class UsuariosController extends Controller
         $registrar = Usuario::find($id);
         $registrar->fill($valores);
         $registrar->save();
-        return redirect('/usuarios')->with('mensaje', 'Se actualizo el usuario');
+        return redirect('/usuarios');
     }
 
     /**
