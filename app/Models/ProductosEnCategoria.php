@@ -12,7 +12,12 @@ class ProductosEnCategoria extends Producto
     protected static function booted()
     {
         static::addGlobalScope('concesionado', function (Builder $build) {
-            $build->select('productos.id', 'productos.nombre', 'productos.descripcion', 'productos.precio', 'productos.id_categorias')->join('categorias', 'productos.id_categorias', '=', "categorias.id");
+            $build->select(
+            'productos.id', 
+            'productos.nombre', 
+            'productos.descripcion', 
+            'productos.precio', 
+            'productos.id_categorias')->join('categorias', 'productos.id_categorias', '=', "categorias.id");
         });
     }
 }
