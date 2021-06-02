@@ -53,9 +53,9 @@ class AutenticarIngreso extends Controller
     //     return $this->loggedOut($request) ?: redirect('/');
     // }
     public function logout()
-    {
+    {        
         Auth::logout();
-        redirect('/');
+        return redirect('/');
     }
 
     public function verificarCorreo()
