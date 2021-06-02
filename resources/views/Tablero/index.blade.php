@@ -50,7 +50,7 @@
             <div class="sidebar-heading">
                 Catalogo
             </div>
-            @if(Auth::user() == null)
+            @if(Auth::user() == null || Auth::user()->rol == 'Cliente')
                 @yield('desplegable')
             @else
             <!-- Nav Item - Pages Collapse Menu -->
