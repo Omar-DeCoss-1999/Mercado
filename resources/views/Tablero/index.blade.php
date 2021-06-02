@@ -49,6 +49,8 @@
             <div class="sidebar-heading">
                 Catalogo
             </div>
+            @yield('listaCatalogos')
+
             @yield('opciones')
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

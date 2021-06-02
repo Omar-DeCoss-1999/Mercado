@@ -18,9 +18,10 @@ class ProductosController extends Controller
     public function index(Request $request)
     {
         $busqueda = trim($request->GET('busqueda'));
+        $categoria = Categoria::all();
         if($busqueda == ''){
           $producto = Producto::all();
-          return view('Productos.index', compact('producto','busqueda'));
+          return view('Productos.index', compact('producto','busqueda','categoria'));
         } else {
           $producto = DB::table('productos')
                       ->select('imagen','nombre','descripcion','precio')
@@ -28,7 +29,7 @@ class ProductosController extends Controller
                       ->orWhere('descripcion','LIKE','%'.$busqueda.'%')
                       ->orderBy('nombre','asc')
                       ->paginate(3);
-          return view('Productos.index', compact('producto','busqueda'));
+          return view('Productos.index', compact('producto','busqueda','categoria'));
         }
         //$producto = Producto::all();
         //return view('Productos.index', compact('producto','busqueda'));

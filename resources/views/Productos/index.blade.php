@@ -32,3 +32,16 @@
     </tbody>
 </table>
 @endsection
+
+@section('listaCatalogos')
+  @forelse ($categoria as $categorias)
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>{{$categorias->nombre}}</span>
+      </a>
+    </li>
+    @empty
+    @endforelse
+@endsection
