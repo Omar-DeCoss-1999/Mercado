@@ -21,7 +21,13 @@
             <td>{{$productos->descripcion}}</td>
             <td>{{$productos->precio}}</td>
             <td>
-
+              <form action="{{ route('productos.destroy', $productos->id) }}" method="get">
+                  <a class="btn btn-info" href="{{ route('productos.show', $productos->id) }}">Mostrar</a>
+                  <a class="btn btn-primary" href="{{ route('productos.edit', $productos->id) }}">Editar</a>
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+              </form>
             </td>
         </tr>
         @empty
@@ -36,7 +42,7 @@
 @section('listaCatalogos')
   @forelse ($categoria as $categorias)
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-target="#collapseTwo"
+      <a class="nav-link collapsed" href="http://mercado.test/productos?movVarCat={{$categorias->id}}" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-folder"></i>
         <span>{{$categorias->nombre}}</span>

@@ -17,20 +17,30 @@ class ProductosController extends Controller
      */
     public function index(Request $request)
     {
+        $seleccion_categoria = $request->GET('movVarCat');
         $busqueda = trim($request->GET('busqueda'));
         $categoria = Categoria::all();
-        if($busqueda == ''){
-          $producto = Producto::all();
-          return view('Productos.index', compact('producto','busqueda','categoria'));
-        } else {
+
+        if ($busqueda != '') {
           $producto = DB::table('productos')
                       ->select('imagen','nombre','descripcion','precio')
                       ->where('nombre','LIKE','%'.$busqueda.'%')
                       ->orWhere('descripcion','LIKE','%'.$busqueda.'%')
                       ->orderBy('nombre','asc')
-                      ->paginate(3);
+                      ->paginate(5);
+          return view('Productos.index', compact('producto','busqueda','categoria'));
+        } elseif ($seleccion_categoria != '') {
+          $producto = DB::table('productos')
+                      ->select('imagen','nombre','descripcion','precio')
+                      ->where('id_categorias','=',$seleccion_categoria)
+                      ->orderBy('nombre','asc')
+                      ->paginate(5);
+          return view('Productos.index', compact('producto','busqueda','categoria'));
+        } else {
+          $producto = Producto::all();
           return view('Productos.index', compact('producto','busqueda','categoria'));
         }
+
         //$producto = Producto::all();
         //return view('Productos.index', compact('producto','busqueda'));
         //$producto = Producto::all();
