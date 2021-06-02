@@ -20,6 +20,7 @@ class ProductosController extends Controller
      */
     public function index($id_categoria)
     {
+      /*
         $seleccion_categoria = $request->GET('movVarCat');
         $busqueda = trim($request->GET('busqueda'));
         $categoria = Categoria::all();
@@ -42,16 +43,13 @@ class ProductosController extends Controller
         } else {
           $producto = Producto::all();
           return view('Productos.index', compact('producto','busqueda','categoria'));
-        }
-
+        }*/
         //$producto = Producto::all();
         //return view('Productos.index', compact('producto','busqueda'));
         //$producto = Producto::all();
         //return view('Productos.index', compact('producto'));
         //$prod = Producto::all();
         //return view('Roles.anonimo', compact('prod'));
-    }
-
        $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria);
