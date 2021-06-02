@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Usuario;
 use App\Models\Categoria;
-use Illuminate\Support\Facades\DB;
+use App\Models\ProductosConsignados;
+use App\Models\ProductosEnCategoria;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductosController extends Controller
 {
@@ -15,7 +18,7 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($id_categoria)
     {
         $seleccion_categoria = $request->GET('movVarCat');
         $busqueda = trim($request->GET('busqueda'));
@@ -49,6 +52,20 @@ class ProductosController extends Controller
         //return view('Roles.anonimo', compact('prod'));
     }
 
+       $producto = ProductosEnCategoria::all()
+            ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+            ->where('id_categorias', $id_categoria);
+         return view('Productos.index', compact('producto', 'id_categoria'));
+
+    }
+    public function buscarpor(Request $request, $id_categoria)
+    {
+        $producto = ProductosEnCategoria::all()
+            ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+            ->where('id_categorias', $id_categoria)
+            ->where('productos.nombre', 'like', $request->input('busqueda'));
+        return view('Productos.index', compact('producto', 'id_categoria'));
+    }
     /**
      * Show the form for creating a new resource.
      *

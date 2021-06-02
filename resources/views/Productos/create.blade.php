@@ -7,11 +7,11 @@
             <h2>Agregar nuevo producto</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('productos.index') }}">Regresar</a>
+            <a class="btn btn-primary" href="/">Regresar</a>
         </div>
     </div>
 </div>
-<form action="{{ route('productos.store') }}" method="POST">
+<form action="productos" method="POST">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

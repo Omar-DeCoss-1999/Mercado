@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\AutenticarIngreso;
+use App\Http\Controllers\RegistrarNuevoUsuario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,24 +18,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/categorias');
-});
+Route::get('/', 'App\Http\Controllers\CategoriasController@index');
+Route::resource('categorias', CategoriasController::class);
 
+Route::get('productos/{$id_categorias}/buscarpor', 'App\Http\Controllers\ProductosController@buscarpor');
+Route::get('productos/{id_categorias}/index', 'App\Http\Controllers\ProductosController@index');
+Route::get('crearProducto', 'App\Http\Controllers\ProductosController@create');
+Route::get('crearCategoria', 'App\Http\Controllers\CategoriasController@create');
+Route::post('productos', 'App\Http\Controllers\ProductosController@store');
+Route::post('categorias', 'App\Http\Controllers\CategoriasController@store');
+Route::put('categorias/{id}', 'App\Http\Controllers\CategoriasController@update');
+Route::get('productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
 Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
 Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
-Route::post('salir', 'App\Http\Controllers\AutenticarIngreso@salir');
+Route::get('salir', 'App\Http\Controllers\AutenticarIngreso@logout');
+// Route::get('salir', function () {
+//     Auth::logout();
+//     return Redirect::to('/');
+// });
 
 Route::get('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD');
+
+Route::get('olpassword', 'App\Http\Controllers\AutenticarIngreso@verificarCorreo');
+Route::post('olpassword', 'App\Http\Controllers\AutenticarIngreso@verificarCorreoR');
+Route::put('olpassword/{email}', 'App\Http\Controllers\AutenticarIngreso@cambiarContra');
+
+Route::resource('/usuarios', UsuariosController::class);
+Route::post('/usuarios/{id}', 'App\Http\Controllers\UsuariosController@update');
+Route::get('editar/{id}', 'App\Http\Controllers\CategoriasController@edit');
 // Route::get('register', function () {
 //     return view('registro');
 // });
-
+/* Route::get('/', function () {
+    return redirect('/categorias');
+});
 Route::get('inicio', function () {
     return view('Roles.supervisor');
 });
 
-Route::resource('/categorias', CategoriasController::class);
+Route::resource('categorias', CategoriasController::class);
 Route::resource('/usuarios', UsuariosController::class);
-Route::resource('/productos', ProductosController::class);
+Route::resource('/productos', ProductosController::class); */

@@ -39,6 +39,7 @@
             <input type="submit" name="" value="Entrar">
           </div>
           <div class="inputBx">
+            <p>¿Olvidaste tu contraseña? <a href="olpassword">Restablecer contraseña</a></p>
             <p>¿No tienes una cuenta? <a href="register">Crear cuenta</a></p>
             <p>¿Desea regresar al inicio? <a href="/">Regresar</a></p>
           </div>

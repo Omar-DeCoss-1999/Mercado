@@ -7,12 +7,12 @@
             <h2>Editar usuario</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('usuarios.index') }}">Regresar</a>
+            <a class="btn btn-primary" href="/usuarios">Regresar</a>
         </div>
     </div>
 </div>
 
-<form action="{{ route('usuarios.update', $usuario->id) }}" method="POST">
+<form action="/usuarios/{{$usuario->id}}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

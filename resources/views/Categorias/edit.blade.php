@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<form action="{{ route('categorias.update', $categoria->id) }}" method="POST">
+<form action="/categorias/{{$categoria->id}}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

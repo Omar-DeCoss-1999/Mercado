@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.css">
     <!-- Custom styles for this template-->
     <link href="<?php echo asset('css/sb-admin-2.min.css') ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo asset('css/style-cart.css')?>">
+    <link rel="stylesheet" href="<?php echo asset('css/style-cart.css') ?>">
 
 </head>
 
@@ -50,9 +50,49 @@
             <div class="sidebar-heading">
                 Catalogo
             </div>
-            @yield('listaCatalogos')
+<<<<<<< HEAD
+            @if(Auth::user() == null)
+                @yield('desplegable')
+            @else
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Categorías</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/">Ver</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Productos</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/">Ver</a>
+                    </div>
+                </div>
+            </li>
 
-            @yield('opciones')
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/usuarios">Ver</a>
+                    </div>
+                </div>
+            </li>
+            @endif
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -77,6 +117,8 @@
                     </button>
 
                     <!-- Topbar Search -->
+                    @yield('buscar')
+
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ route('productos.index') }}" method="get">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar por.."
@@ -89,7 +131,7 @@
                         </div>
                     </form>
 
-                    <!-- Topbar Navbar -->
+                <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -149,11 +191,38 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @yield('nombreU')
-                                @yield('fotoP')
+                                @if(Auth::user() == null)
+                                <span style="color:#fff;" class="mr-2 d-none d-lg-inline small">Anónimo</span>
+                                <img class="img-profile rounded-circle" src="<?php echo asset('img/undraw_profile.svg') ?>">
+                                @else
+                                <span style="color:#fff;" class="mr-2 d-none d-lg-inline small">{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})</span>
+                                <img class="img-profile rounded-circle" src="<?php echo asset('img/undraw_profile.svg') ?>">
+                                @endif
                             </a>
                             <!-- Dropdown - User Information -->
-                            @yield('usuarioOpciones')
+                            @if(Auth::user() == null)
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="login">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Iniciar sesión
+                                </a>
+                                <a class="dropdown-item" href="register">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Registrarse
+                                </a>
+                            </div>
+                            @else
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="login">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <a class="dropdown-item" href="salir" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                            @endif
                         </li>
 
                     </ul>
@@ -186,7 +255,7 @@
                 <div class="modal-body">Seleccion "Salir" si estas seguro de cerrar sesión.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Regresar</button>
-                    <a class="btn btn-primary" href="/">Salir</a>
+                    <a class="btn btn-primary" href="salir">Salir</a>
                 </div>
             </div>
         </div>
