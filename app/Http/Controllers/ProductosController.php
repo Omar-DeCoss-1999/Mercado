@@ -50,10 +50,13 @@ class ProductosController extends Controller
         //return view('Productos.index', compact('producto'));
         //$prod = Producto::all();
         //return view('Roles.anonimo', compact('prod'));
+       //$busqueda = trim($request->GET('busqueda'));
        $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria);
          return view('Productos.index', compact('producto', 'id_categoria'));
+
+         
 
     }
     public function buscarpor(Request $request, $id_categoria)
