@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\CategoriasController@index');
 Route::resource('categorias', CategoriasController::class);
 
-Route::get('productos/{$id_categorias}/buscarpor', 'App\Http\Controllers\ProductosController@buscarpor');
+Route::get('productos/{id_categorias}/buscarpor', 'App\Http\Controllers\ProductosController@buscarpor');
 Route::get('productos/{id_categorias}/index', 'App\Http\Controllers\ProductosController@index');
 Route::get('crearProducto', 'App\Http\Controllers\ProductosController@create');
 Route::get('crearCategoria', 'App\Http\Controllers\CategoriasController@create');

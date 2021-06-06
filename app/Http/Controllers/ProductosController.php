@@ -9,6 +9,7 @@ use App\Models\Categoria;
 use App\Models\ProductosConsignados;
 use App\Models\ProductosEnCategoria;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductosController extends Controller
@@ -55,18 +56,59 @@ class ProductosController extends Controller
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria);
          return view('Productos.index', compact('producto', 'id_categoria'));
-
-         
-
     }
+
     public function buscarpor(Request $request, $id_categoria)
     {
+      $busqueda = trim($request->GET('busqueda'));
+
+      if ($busqueda != '') { //si estamos buscando algo (campo de texto lleno)
+        $producto = DB::table('productos')
+                    ->select('imagen','nombre','descripcion','precio')
+                    ->where('id_categorias','=',$id_categoria)
+                    ->where('nombre','LIKE','%'.$busqueda.'%')
+                    //->orWhere('descripcion','LIKE','%'.$busqueda.'%')
+                    ->orderBy('nombre','asc')
+                    ->paginate(5);
+        return view('Productos.index', compact('producto','id_categoria','busqueda'));
+     } else { //si no estamos buscando algo (campo de texto vacio, pero evita errores)
+      $producto = ProductosEnCategoria::all()
+           ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+           ->where('id_categorias', $id_categoria);
+        return view('Productos.index', compact('producto', 'id_categoria','busqueda'));
+    }
+      /*
+      $busqueda = trim($request->GET('busqueda'));
+      //$busqueda = 'Le';
+
+      if($busqueda == ''){
+        $producto = ProductosEnCategoria::all()
+             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+             ->where('id_categorias', $id_categoria);
+        return view('Productos.index', compact('producto', 'id_categoria'));
+      } else {
         $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria)
-            ->where('productos.nombre', 'like', $request->input('busqueda'));
+            ->where('descripcion', 'like', 'Tele%');
+            //->where('nombre', 'like', 'T%')
+            //->where('precio','>=',7000);
         return view('Productos.index', compact('producto', 'id_categoria'));
+      }
+*/
+      /*$producto = ProductosEnCategoria::all()
+          ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
+          ->where('id_categorias', $id_categoria);*/
+          //->where('nombre', 'LIKE', "%$busqueda%");
+          //->whereRaw('nombre LIKE %?%', array($busqueda));
+      //$users = User::whereRaw('name LIKE %?%', array($name))->get()
+    //$users = User::where('name', 'LIKE', "%$name%")->get();
+          //->where('concesionado.productos.nombre','LIKE','%'.$busqueda.'%');
+          //->where('productos.nombre', 'LIKE','%'.$request->input('busqueda').'%');
+          //->where('productos.nombre', 'like', $request->input('busqueda'));
+      //return view('Productos.index', compact('producto', 'id_categoria'));
     }
+
     /**
      * Show the form for creating a new resource.
      *

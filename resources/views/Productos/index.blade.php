@@ -36,7 +36,6 @@
             <td>{{$productos->nombre}}</td>
             <td>{{$productos->descripcion}}</td>
             <td>{{$productos->precio}}</td>
-            <!-- <td><a class="btn btn-info" href="productos/{{$productos->id}}/mostrar">Mostrar<i class='icon-zoom-in'></i></a></td> -->
         </tr>
         @empty
         <tr align="center">
