@@ -21,37 +21,6 @@ class ProductosController extends Controller
      */
     public function index($id_categoria)
     {
-      /*
-        $seleccion_categoria = $request->GET('movVarCat');
-        $busqueda = trim($request->GET('busqueda'));
-        $categoria = Categoria::all();
-
-        if ($busqueda != '') {
-          $producto = DB::table('productos')
-                      ->select('imagen','nombre','descripcion','precio')
-                      ->where('nombre','LIKE','%'.$busqueda.'%')
-                      ->orWhere('descripcion','LIKE','%'.$busqueda.'%')
-                      ->orderBy('nombre','asc')
-                      ->paginate(5);
-          return view('Productos.index', compact('producto','busqueda','categoria'));
-        } elseif ($seleccion_categoria != '') {
-          $producto = DB::table('productos')
-                      ->select('imagen','nombre','descripcion','precio')
-                      ->where('id_categorias','=',$seleccion_categoria)
-                      ->orderBy('nombre','asc')
-                      ->paginate(5);
-          return view('Productos.index', compact('producto','busqueda','categoria'));
-        } else {
-          $producto = Producto::all();
-          return view('Productos.index', compact('producto','busqueda','categoria'));
-        }*/
-        //$producto = Producto::all();
-        //return view('Productos.index', compact('producto','busqueda'));
-        //$producto = Producto::all();
-        //return view('Productos.index', compact('producto'));
-        //$prod = Producto::all();
-        //return view('Roles.anonimo', compact('prod'));
-       //$busqueda = trim($request->GET('busqueda'));
        $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria);
@@ -71,42 +40,12 @@ class ProductosController extends Controller
                     ->orderBy('nombre','asc')
                     ->paginate(5);
         return view('Productos.index', compact('producto','id_categoria','busqueda'));
-     } else { //si no estamos buscando algo (campo de texto vacio, pero evita errores)
-      $producto = ProductosEnCategoria::all()
-           ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
-           ->where('id_categorias', $id_categoria);
-        return view('Productos.index', compact('producto', 'id_categoria','busqueda'));
-    }
-      /*
-      $busqueda = trim($request->GET('busqueda'));
-      //$busqueda = 'Le';
-
-      if($busqueda == ''){
-        $producto = ProductosEnCategoria::all()
-             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
-             ->where('id_categorias', $id_categoria);
-        return view('Productos.index', compact('producto', 'id_categoria'));
-      } else {
+      } else { //si no estamos buscando algo (campo de texto vacio, pero evita errores)
         $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
-            ->where('id_categorias', $id_categoria)
-            ->where('descripcion', 'like', 'Tele%');
-            //->where('nombre', 'like', 'T%')
-            //->where('precio','>=',7000);
-        return view('Productos.index', compact('producto', 'id_categoria'));
+            ->where('id_categorias', $id_categoria);
+        return view('Productos.index', compact('producto', 'id_categoria','busqueda'));
       }
-*/
-      /*$producto = ProductosEnCategoria::all()
-          ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
-          ->where('id_categorias', $id_categoria);*/
-          //->where('nombre', 'LIKE', "%$busqueda%");
-          //->whereRaw('nombre LIKE %?%', array($busqueda));
-      //$users = User::whereRaw('name LIKE %?%', array($name))->get()
-    //$users = User::where('name', 'LIKE', "%$name%")->get();
-          //->where('concesionado.productos.nombre','LIKE','%'.$busqueda.'%');
-          //->where('productos.nombre', 'LIKE','%'.$request->input('busqueda').'%');
-          //->where('productos.nombre', 'like', $request->input('busqueda'));
-      //return view('Productos.index', compact('producto', 'id_categoria'));
     }
 
     /**
