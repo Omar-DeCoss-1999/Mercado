@@ -21,6 +21,10 @@ class ProductosController extends Controller
      */
     public function index($id_categoria)
     {
+/*         if (Auth::user()->rol == "Cliente")
+            $producto = Producto::where('id_usuarios', Auth::id())->get();
+        else 
+            $producto = Producto::all(); */
        $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
             ->where('id_categorias', $id_categoria);
@@ -105,6 +109,8 @@ class ProductosController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
+        // $this->authorize('update', $producto);
+        // $categorias = Categoria::all();
         return view('Productos.edit', compact('producto'));
     }
 
@@ -129,6 +135,7 @@ class ProductosController extends Controller
         $new_producto->nombre = $request->input('nombre');
         $new_producto->descripcion = $request->input('descripcion');
         $new_producto->precio = $request->input('precio');
+        if($new_producto->concesionado == 0) $new_producto->concesionado=null;
         $new_producto->save();
         return redirect('/productos');
     }
