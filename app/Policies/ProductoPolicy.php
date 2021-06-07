@@ -3,20 +3,27 @@
 namespace App\Policies;
 
 use App\Models\Usuario;
+use App\Models\Producto;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-
-class UsuariosPolicy
+class ProductoPolicy
 {
     use HandlesAuthorization;
 
+    public function preguntar(Usuario $usuario, Producto $producto){
+        return $usuario->rol == "Cliente" && $producto->usuario_id != $usuario->id;     
+    }
+
+    public function cambios(Usuario $usuario, Producto $producto){
+        return $producto->concesionado != 1;
+    }
     /**
      * Determine whether the user can view any models.
      *
      * @param  \  $
      * @return mixed
      */
-    public function viewAny(Usuario $usuarioA)
+    public function viewAny(Usuario $usuario)
     {
         //
     }
@@ -28,7 +35,7 @@ class UsuariosPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function view(Usuario $usuarioA, Usuario $usuarioM)
+    public function view(Producto $producto, Usuario $usuario)
     {
         //
     }
@@ -41,7 +48,7 @@ class UsuariosPolicy
      */
     public function create(Usuario $usuario)
     {
-        //
+        return $usuario->rol == "Cliente";
     }
 
     /**
@@ -51,9 +58,9 @@ class UsuariosPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function update(Usuario $usuarioA, Usuario $usuarioM)
+    public function update(Producto $producto, Usuario $usuario)
     {
-        //
+        return $producto->usuario_id == $usuario->id;
     }
 
     /**
@@ -63,9 +70,11 @@ class UsuariosPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function delete(Usuario $usuarioA, Usuario $usuarioM)
+    public function delete(Producto $producto, Usuario $usuario)
     {
-        //
+        if ($usuario->rol == "Contador") return false;
+        if ($usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return !$producto->concesionado;
+        if ($usuario->rol == "Cliente") return !$producto->concesionado && $producto->usuario_id == $usuario->id;
     }
 
     /**
@@ -75,7 +84,7 @@ class UsuariosPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function restore(Usuario $usuarioA, Usuario $usuarioM)
+    public function restore(Producto $producto, Usuario $usuario)
     {
         //
     }
@@ -87,7 +96,7 @@ class UsuariosPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function forceDelete(Usuario $usuarioA, Usuario $usuarioM)
+    public function forceDelete(Producto $producto, Usuario $usuario)
     {
         //
     }
