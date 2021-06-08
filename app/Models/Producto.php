@@ -35,4 +35,8 @@ class Producto extends Model
         if ($this->concesionado) return "SI";
         else return "NO";
     }
+
+    public function compra(){
+        return $this->belongsToMany('App\Models\Compra');
+    }
 }

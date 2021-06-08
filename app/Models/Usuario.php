@@ -28,4 +28,8 @@ class Usuario extends Model
             'id'
         );
     }
+
+    public function compras(){
+        return $this->hasMany('App\Models\Compra');
+    }
 }
