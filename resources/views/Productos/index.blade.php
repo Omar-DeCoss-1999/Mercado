@@ -32,7 +32,7 @@
     <tbody>
         @forelse ($producto as $productos)
         <tr>
-            <td><img src="{{asset('/productos_img/'.$productos->imagen)}}" width="50px" height="50px"></td>
+            <td><img src="{{ asset('/storage/images/products/' . $productos->imagen)}}" width="80px" height="80px"></td>
             <td>{{$productos->nombre}}</td>
             <td>{{$productos->descripcion}}</td>
             <td>{{$productos->precio}}</td>
@@ -98,8 +98,12 @@
             <td>{{$productos->descripcion}}</td>
             <td>{{$productos->precio}}</td>
             <td>
-                <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Mostrar</a>
-                <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
+                <form action="/deleteProducto/{{$productos->id}}" method="post">
+                    <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Mostrar</a>
+                    <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
             </td>
         </tr>
         @empty

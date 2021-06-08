@@ -73,19 +73,26 @@ class ProductosController extends Controller
     public function store(Request $request)
     {
         $producto = $request->all();
-        $imagen = $request->file('imagen');
-        if (!is_null($imagen)) {
+        //$imagen = $request->file('imagen');
+/*         if (!is_null($imagen)) {
             $ruta_imagen = public_path('productos_img/');
             $nombre_imagen = $imagen->getClientOriginalName();
             $imagen->move($ruta_imagen, $nombre_imagen);
             $producto['imagen'] = $nombre_imagen;
+        } */
+        if($request->hasFile('image')){
+            $detination_path = 'public/images/products';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($detination_path, $image_name);
+            $producto['imagen'] = $image_name;
         }
         $registrar = new Producto();
         $registrar->fill($producto);
         $registrar->concesionado = 1;
         $registrar->motivo = "";
         $registrar->save();
-        return redirect('/productos');
+        return redirect('/');
     }
 
     /**
@@ -147,8 +154,8 @@ class ProductosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         Producto::destroy($id);
-        return redirect('/productos');
+        return redirect('/');
     }
 }

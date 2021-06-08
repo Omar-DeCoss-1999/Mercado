@@ -11,7 +11,7 @@
         </div>
     </div>
 </div>
-<form action="/crearProducto" method="POST">
+<form action="/producto" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Imagen del producto:</strong>
-                <input type="file" name="imagen" class="form-control" placeholder="Seleccione la imagen">
+                <input type="file" name="image" class="form-control" placeholder="Seleccione la imagen">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Proponer</button>
         </div>
     </div>
 </form>
