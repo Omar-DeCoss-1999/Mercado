@@ -41,12 +41,19 @@ class UsuariosController extends Controller
         if ($usuario_nuevo['password'] !== $usuario_nuevo['password2']) {
             return redirect()->back()->with('error', 'Las contraseñas ingresadas son diferentes');
         }
-        $imagen = $request->file('imagen');
+/*         $imagen = $request->file('imagen');
         if (!is_null($imagen)) {
             $ruta_imagen = public_path('perfil_img/');
             $nombre_imagen = $imagen->getClientOriginalName();
             $imagen->move($ruta_imagen, $nombre_imagen);
             $usuario_nuevo['imagen'] = $nombre_imagen;
+        } */
+        if($request->hasFile('image')){
+            $detination_path = 'public/images/users';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($detination_path, $image_name);
+            $usuario_nuevo['imagen'] = $image_name;
         }
         $usuario_nuevo['password'] = Hash::make($usuario_nuevo['password']);
         $registrar = new Usuario();

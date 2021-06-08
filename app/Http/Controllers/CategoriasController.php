@@ -42,16 +42,23 @@ class CategoriasController extends Controller
     public function store(Request $request)
     {
         $categoria = new Categoria();
-        $imagen = $request->file('imagen');
+/*         $imagen = $request->file('imagen');
         if (!is_null($imagen)){
             $ruta_imagen = public_path('images/images_categorias/');
             $nombre_imagen = $imagen->getClientOriginalName();
             $imagen->move($ruta_imagen,$nombre_imagen);
             $categoria['imagen']=$nombre_imagen;
+        } */
+        if($request->hasFile('image')){
+            $detination_path = 'public/images/category';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($detination_path, $image_name);
+            $categoria['imagen'] = $image_name;
         }
         $categoria->nombre=$request->input('nombre');
         $categoria->descripcion=$request->input('descripcion');
-        $categoria->imagen = $request->input('imagen');
+        //$categoria->imagen = $request->input('imagen');
         $categoria->activa = 1;
         $categoria->save();
         return redirect('/');
