@@ -137,7 +137,7 @@ class ProductosController extends Controller
         $new_producto->precio = $request->input('precio');
         if($new_producto->concesionado == 0) $new_producto->concesionado=null;
         $new_producto->save();
-        return redirect('/productos');
+        return redirect('/');
     }
 
     /**

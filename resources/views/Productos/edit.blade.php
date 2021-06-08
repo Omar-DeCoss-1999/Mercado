@@ -7,12 +7,12 @@
             <h2>Editar producto</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('productos.index') }}">Regresar</a>
+            <a class="btn btn-primary" href="/">Regresar</a>
         </div>
     </div>
 </div>
 
-<form action="{{ route('productos.update', $producto->id) }}" method="POST">
+<form action="/actualizarProducto/{{$producto->id}}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

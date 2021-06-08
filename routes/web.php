@@ -23,12 +23,14 @@ Route::resource('categorias', CategoriasController::class);
 
 Route::get('productos/{id_categorias}/buscarpor', 'App\Http\Controllers\ProductosController@buscarpor');
 Route::get('productos/{id_categorias}/index', 'App\Http\Controllers\ProductosController@index');
-Route::get('crearProducto', 'App\Http\Controllers\ProductosController@create');
+Route::get('/crearProducto', 'App\Http\Controllers\ProductosController@create');
 Route::get('crearCategoria', 'App\Http\Controllers\CategoriasController@create');
 Route::post('productos', 'App\Http\Controllers\ProductosController@store');
 Route::post('categorias', 'App\Http\Controllers\CategoriasController@store');
 Route::put('categorias/{id}', 'App\Http\Controllers\CategoriasController@update');
-Route::get('productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
+Route::put('/actualizarProducto/{id}', 'App\Http\Controllers\ProductosController@update');
+Route::get('/productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
+Route::get('/editarProducto/{id}' ,'App\Http\Controllers\ProductosController@edit');
 Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
 Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
 Route::get('salir', 'App\Http\Controllers\AutenticarIngreso@logout');
