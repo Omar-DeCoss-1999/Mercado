@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Pregunta;
 use App\Models\Producto;
+use App\Models\ProductosConsignados;
 use App\Policies\PreguntaPolicy;
 use App\Policies\ProductoPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

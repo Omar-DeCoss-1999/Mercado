@@ -28,6 +28,7 @@
             <td>Nombre</td>
             <td>Descripción</td>
             <td>Precio</td>
+            <td>Cantidad</td>
             <td>Acciones</td>
         </tr>
     </thead>
@@ -38,19 +39,22 @@
             <td>{{$productos->nombre}}</td>
             <td>{{$productos->descripcion}}</td>
             <td>$ {{$productos->precio}}</td>
+            <td>{{$productos->cantidad}}</td>
             <td>
                 <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Ver</a>
-                @can('update', $producto)
-                <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
-                @endcan
 
-                @can('delete', $producto)
+                <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
+
+                <form action="/comprar/{{$productos->id}}" method="post">
+                    @csrf
+                    <input type="submit" class="btn btn-success" value="Comprar">
+                </form>
+
                 <form action="/deleteProducto/{{$productos->id}}" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="submit" class="btn btn-danger" value="Eliminar">
                 </form>
-                @endcan
             </td>
         </tr>
         @empty

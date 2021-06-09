@@ -28,9 +28,9 @@ Route::get('crearCategoria', 'App\Http\Controllers\CategoriasController@create')
 Route::post('producto', 'App\Http\Controllers\ProductosController@store');
 Route::post('categorias', 'App\Http\Controllers\CategoriasController@store');
 Route::put('categorias/{id}', 'App\Http\Controllers\CategoriasController@update');
-Route::put('/actualizarProducto/{id}', 'App\Http\Controllers\ProductosController@update');
-Route::get('/productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
-Route::get('/editarProducto/{id}' ,'App\Http\Controllers\ProductosController@edit');
+Route::put('actualizarProducto/{id}', 'App\Http\Controllers\ProductosController@update');
+Route::get('productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
+Route::get('editarProducto/{id}' ,'App\Http\Controllers\ProductosController@edit');
 Route::post('deleteProducto/{id}' ,'App\Http\Controllers\ProductosController@destroy');
 Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
 Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
@@ -39,6 +39,15 @@ Route::get('salir', 'App\Http\Controllers\AutenticarIngreso@logout');
 //     Auth::logout();
 //     return Redirect::to('/');
 // });
+Route::post('pregunta/{id}', 'App\Http\Controllers\PreguntasController@createPregunta');
+Route::put('pregunta/{id}', 'App\Http\Controllers\PreguntasController@createRespuesta');
+
+Route::put('productos/{id}/concesionar', 'App\Http\Controllers\ProductosController@concesionar');
+Route::put('productos/{id}/motivo', 'App\Http\Controllers\ProductosController@motivo');
+
+Route::post('comprar/{id}', 'App\Http\Controllers\ComprasController@store');
+
+Route::get('productosComprados', 'App\Http\Controllers\ProductosController@comprasProducto');
 
 Route::get('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD');
@@ -47,8 +56,9 @@ Route::get('olpassword', 'App\Http\Controllers\AutenticarIngreso@verificarCorreo
 Route::post('olpassword', 'App\Http\Controllers\AutenticarIngreso@verificarCorreoR');
 Route::put('olpassword/{email}', 'App\Http\Controllers\AutenticarIngreso@cambiarContra');
 
-Route::resource('/usuarios', UsuariosController::class);
-Route::post('/usuarios/{id}', 'App\Http\Controllers\UsuariosController@update');
+Route::resource('usuarios', UsuariosController::class);
+Route::get('usuarios/{id}');
+Route::post('usuarios/{id}', 'App\Http\Controllers\UsuariosController@update');
 Route::get('editar/{id}', 'App\Http\Controllers\CategoriasController@edit');
 // Route::get('register', function () {
 //     return view('registro');

@@ -24,6 +24,9 @@
                 <form action="{{ route('usuarios.destroy', $usuarios->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('usuarios.show', $usuarios->id) }}">Mostrar</a>
                     <a class="btn btn-primary" href="{{ route('usuarios.edit', $usuarios->id) }}">Editar</a>
+                    @if(Auth::user()->rol == 'Encargado')
+                    <a class="btn btn-info" href="{{ route('usuarios.rest, $usuarios->id') }}">Restablecer contraseña</a>
+                    @endif
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

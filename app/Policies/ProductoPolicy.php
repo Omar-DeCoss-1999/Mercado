@@ -4,6 +4,8 @@ namespace App\Policies;
 
 use App\Models\Usuario;
 use App\Models\Producto;
+use App\Models\ProductosConsignados;
+use App\Models\ProductosEnCategoria;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,11 +14,15 @@ class ProductoPolicy
     use HandlesAuthorization;
 
     public function preguntar(Usuario $usuario, Producto $producto){
-        return $usuario->rol == "Cliente" && $producto->id_usuarios != $usuario->id;     
+        return Auth::user()->rol == "Cliente" && $producto->id_usuarios != Auth::user()->id;     
     }
 
     public function cambios(Usuario $usuario, Producto $producto){
         return $producto->concesionado != 1;
+    }
+
+    public function comprar(Usuario $usuario, ProductosConsignados $producto){
+        return $producto->id_usuarios != Auth::user()->id && Auth::user()->rol == 'Cliente';
     }
     /**
      * Determine whether the user can view any models.
@@ -59,9 +65,9 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function update(Producto $producto, Usuario $usuario)
+    public function update(ProductosConsignados $producto, Usuario $usuario)
     {
-        return $producto->id_usuarios == $usuario->id;
+        return $producto->id_usuarios == Auth::user()->id;
     }
 
     /**
@@ -71,11 +77,11 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function delete(Producto $producto, Usuario $usuario)
+    public function delete(ProductosConsignados $producto, Usuario $usuario)
     {
-        if ($usuario->rol == "Contador") return false;
-        if ($usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return !$producto->concesionado;
-        if ($usuario->rol == "Cliente") return !$producto->concesionado && $producto->id_usuarios == $usuario->id;
+        if ( Auth::user()->rol == "Contador") return false;
+        if ( Auth::user()->rol == "Supervisor" || Auth::user()->rol == "Encargado") return !$producto->concesionado;
+        if ( Auth::user()->rol == "Cliente") return !$producto->concesionado && $producto->id_usuarios == Auth::user()->id;
     }
 
     /**

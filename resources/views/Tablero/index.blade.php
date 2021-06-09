@@ -51,7 +51,7 @@
                 Catalogo
             </div>
             @if(Auth::user() == null || Auth::user()->rol == 'Cliente')
-                @yield('desplegable')
+            @yield('desplegable')
             @else
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -118,7 +118,7 @@
                     <!-- Topbar Search -->
                     @yield('buscar')
 
-                <!-- Topbar Navbar -->
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->

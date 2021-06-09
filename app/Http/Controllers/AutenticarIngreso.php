@@ -18,23 +18,47 @@ class AutenticarIngreso extends Controller
 
     public function validar(Request $request)
     {
-        $credentials = $this->validate(request(),  [
+      $credentials = $this->validate(request(),  [
             'correo' => 'required|email|string',
             'password' => 'required|string'
         ]);
         $contaP = Producto::count();
         $contaC = Categoria::count();
         $contaU = Usuario::count();
+
         if (Auth::attempt($credentials)) {
             if (Auth::user()->rol == 'Contador') {
                 return view('Tablero.conta');
             }
-            if (Auth::user()->rol != 'Cliente') {
+            if (Auth::user()->rol == 'Supervisor') {
                 return view('Roles.supervisor', compact('contaP', 'contaC', 'contaU'));
             }
             return redirect('/');
         }
         return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
+/*         $usuario_name = $request->input('correo');
+        $usuario = Usuario::where('correo', $usuario_name)->first();
+        if (is_null($usuario)) {
+            return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
+        } else {
+            $password = $request->input('password');
+            $password_user = $usuario->password;
+            if (Hash::check($password, $password_user)) {
+                Auth::login($usuario);
+                if ($usuario->rol == 'Contador') {
+                    return view('Tablero.conta');
+                }
+                if ($usuario->rol != 'Cliente') {
+                    $contaP = Producto::count();
+                    $contaC = Categoria::count();
+                    $contaU = Usuario::count();
+                    return view('Roles.supervisor', compact('contaP', 'contaC', 'contaU'));
+                }
+                return redirect('/');
+            } else {
+                return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
+            }
+        } */
     }
 
     // public function logout(Request $request)
@@ -53,7 +77,7 @@ class AutenticarIngreso extends Controller
     //     return $this->loggedOut($request) ?: redirect('/');
     // }
     public function logout()
-    {        
+    {
         Auth::logout();
         return redirect('/');
     }
@@ -80,7 +104,7 @@ class AutenticarIngreso extends Controller
         $password = $request->all();
         if ($password['password'] != $password['password2']) {
             return back()->withErrors(['password' => 'Verifique lo ingresado']);
-        }else{
+        } else {
             $password['password'] = Hash::make($password['password']);
             $new_pass = Usuario::where('correo', $email)->first();
             $new_pass->password = $password['password'];

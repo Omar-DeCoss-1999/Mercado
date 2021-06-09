@@ -13,7 +13,7 @@ class CreateCompra extends Migration
      */
     public function up()
     {
-        Schema::create('compra', function (Blueprint $table) {
+        Schema::create('compras', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->timestamp('h_compra');
             $table->boolean('compra_autorizada');

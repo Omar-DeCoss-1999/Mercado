@@ -13,7 +13,7 @@ class CreateBitacora extends Migration
      */
     public function up()
     {
-        Schema::create('bitacora', function (Blueprint $table) {
+        Schema::create('bitacoras', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('quien',200);
             $table->date('cuando');

@@ -14,7 +14,8 @@ class Producto extends Model
         'precio', 
         'imagen', 
         'concesionado', 
-        'motivo', 
+        'motivo',
+        'cantidad', 
         'id_categorias', 
         'id_usuarios'
     ];

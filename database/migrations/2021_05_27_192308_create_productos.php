@@ -21,6 +21,7 @@ class CreateProductos extends Migration
             $table->string('imagen', 100);
             $table->tinyInteger('concesionado');
             $table->string('motivo', 100);
+            $table->float('cantidad');
             $table->unsignedInteger('id_categorias');
             $table->unsignedInteger('id_usuarios');
 /*          $table->foreignId('id_categorias')->reference('id')->constrained('categorias')->onDelete('cascade');

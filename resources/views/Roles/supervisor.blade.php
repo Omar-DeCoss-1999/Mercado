@@ -42,7 +42,7 @@
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="usuarios">Ver</a>
+            <a class="collapse-item" href="/usuarios">Ver</a>
         </div>
     </div>
 </li>
@@ -63,11 +63,11 @@
 
 @section('usuarioOpciones')
 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-    <a class="dropdown-item" href="login">
+    <a class="dropdown-item" href="/login">
         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
         Perfil
     </a>
-    <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
+    <a class="dropdown-item" href="/salir" data-toggle="modal" data-target="#logoutModal">
         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
         Cerrar sesión
     </a>
