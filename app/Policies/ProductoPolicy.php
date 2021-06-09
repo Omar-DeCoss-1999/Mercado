@@ -5,13 +5,14 @@ namespace App\Policies;
 use App\Models\Usuario;
 use App\Models\Producto;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoPolicy
 {
     use HandlesAuthorization;
 
     public function preguntar(Usuario $usuario, Producto $producto){
-        return $usuario->rol == "Cliente" && $producto->usuario_id != $usuario->id;     
+        return $usuario->rol == "Cliente" && $producto->id_usuarios != $usuario->id;     
     }
 
     public function cambios(Usuario $usuario, Producto $producto){
@@ -46,9 +47,9 @@ class ProductoPolicy
      * @param  \  $
      * @return mixed
      */
-    public function create(Usuario $usuario)
+    public function create()
     {
-        return $usuario->rol == "Cliente";
+        return Auth::user()->rol == 'Cliente';
     }
 
     /**
@@ -60,7 +61,7 @@ class ProductoPolicy
      */
     public function update(Producto $producto, Usuario $usuario)
     {
-        return $producto->usuario_id == $usuario->id;
+        return $producto->id_usuarios == $usuario->id;
     }
 
     /**
@@ -74,7 +75,7 @@ class ProductoPolicy
     {
         if ($usuario->rol == "Contador") return false;
         if ($usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return !$producto->concesionado;
-        if ($usuario->rol == "Cliente") return !$producto->concesionado && $producto->usuario_id == $usuario->id;
+        if ($usuario->rol == "Cliente") return !$producto->concesionado && $producto->id_usuarios == $usuario->id;
     }
 
     /**

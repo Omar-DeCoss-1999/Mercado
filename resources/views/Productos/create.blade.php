@@ -50,7 +50,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+<!--         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Identificador de usuarios:</strong>
                 <select class="form-control" name="id_usuarios" id="id_usuarios">
@@ -61,7 +61,7 @@
                     @endforelse
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Proponer</button>
         </div>

@@ -89,7 +89,8 @@ class ProductosController extends Controller
         }
         $registrar = new Producto();
         $registrar->fill($producto);
-        $registrar->concesionado = 1;
+        $registrar['id_usuarios'] = Auth::user()->id;
+        $registrar->concesionado = 0;
         $registrar->motivo = "";
         $registrar->save();
         return redirect('/');
@@ -116,8 +117,8 @@ class ProductosController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
-        // $this->authorize('update', $producto);
-        // $categorias = Categoria::all();
+        $this->authorize('update', $producto);
+        $categorias = Categoria::all();
         return view('Productos.edit', compact('producto'));
     }
 

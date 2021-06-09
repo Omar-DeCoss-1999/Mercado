@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Pregunta;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 
 class PreguntaPolicy
@@ -12,14 +13,14 @@ class PreguntaPolicy
     use HandlesAuthorization;
 
     public function responder(Usuario $usuario, Pregunta $pregunta){
-        return $usuario->rol == "Cliente" && is_null($pregunta->respuesta);
+        return Auth::user()->rol == "Cliente" && is_null($pregunta->respuesta);
     }
 
     public function moderar(Usuario $usuario){
-        return $usuario->rol == "Encargado";
+        return Auth::user()->rol == "Encargado";
     }
 
     public function delete(Usuario $usuario){
-        return $usuario->rol == "Encargado";
+        return Auth::user()->rol == "Encargado";
     }
 }

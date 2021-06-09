@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['nombre', 'descripcion', 'precio', 'imagen', 'concesionado', 'motivo', 'id_categorias', 'id_usuarios'];
+    protected $fillable = [
+        'nombre', 
+        'descripcion', 
+        'precio', 
+        'imagen', 
+        'concesionado', 
+        'motivo', 
+        'id_categorias', 
+        'id_usuarios'
+    ];
 
     public function pregunta(){
         return $this->hasMany('App\Models\Pregunta');
