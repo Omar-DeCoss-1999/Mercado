@@ -16,7 +16,7 @@
     <tbody>
         @forelse ($usuario as $usuarios)
         <tr>
-            <td><img src="{{asset('/perfil_img/'.$usuarios->imagen)}}" width="50px" height="50px"></td>
+            <td><img src="{{asset('/perfil_img/'.$usuarios->imagen)}}" width="90px" height="90px"></td>
             <td>{{$usuarios->nombre}}</td>
             <td>{{$usuarios->correo}}</td>
             <td>{{$usuarios->rol}}</td>
@@ -24,13 +24,14 @@
                 <form action="{{ route('usuarios.destroy', $usuarios->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('usuarios.show', $usuarios->id) }}">Mostrar</a>
                     <a class="btn btn-primary" href="{{ route('usuarios.edit', $usuarios->id) }}">Editar</a>
-                    @if(Auth::user()->rol == 'Encargado')
-                    <a class="btn btn-info" href="{{ route('usuarios.rest, $usuarios->id') }}">Restablecer contraseña</a>
-                    @endif
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
+                <br>
+                @if(Auth::user()->rol == 'Encargado')
+                    <a type="submit" class="btn btn-success" href="/restablecer/{{$usuarios->id}}">Restablecer contraseña</a>
+                @endif
             </td>
         </tr>
         @empty

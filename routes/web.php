@@ -59,6 +59,8 @@ Route::put('olpassword/{email}', 'App\Http\Controllers\AutenticarIngreso@cambiar
 Route::resource('usuarios', UsuariosController::class);
 Route::get('usuarios/{id}');
 Route::post('usuarios/{id}', 'App\Http\Controllers\UsuariosController@update');
+Route::get('restablecer/{id}', 'App\Http\Controllers\UsuariosController@restablecerPassword');
+Route::put('usuarios/restablecer/{id}', 'App\Http\Controllers\UsuariosController@actualizarPassword');
 Route::get('editar/{id}', 'App\Http\Controllers\CategoriasController@edit');
 // Route::get('register', function () {
 //     return view('registro');

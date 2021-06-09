@@ -24,7 +24,7 @@
                     @csrf
                     @method('PUT')
                     <div class="inputBx">
-                        <span>Ingrese la nueva ontraseña</span>
+                        <span>Ingrese la nueva contraseña</span>
                         <input type="password" name="password" placeholder="Ingrese su contraseña">
                         {!! $errors->first('password', '<span class="help-block">:message</span>')!!}
                     </div>

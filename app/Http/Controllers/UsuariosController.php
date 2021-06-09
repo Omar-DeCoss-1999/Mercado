@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends Controller
 {
@@ -15,8 +16,13 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $usuario = Usuario::all();
-        return view('Usuarios.index', compact('usuario'));
+        if (Auth::user()->rol == "Encargado") {
+            $usuario = Usuario::where('rol', Auth::user()->rol == 'Encargado' || Auth::user()->rol == 'Cliente' || Auth::user()->rol == 'Contador')->get();
+            return view('Usuarios.index', compact('usuario'));
+        } else {
+            $usuario = Usuario::all();
+            return view('Usuarios.index', compact('usuario'));
+        }
     }
 
     /**
@@ -41,14 +47,14 @@ class UsuariosController extends Controller
         if ($usuario_nuevo['password'] !== $usuario_nuevo['password2']) {
             return redirect()->back()->with('error', 'Las contraseñas ingresadas son diferentes');
         }
-/*         $imagen = $request->file('imagen');
+        /*         $imagen = $request->file('imagen');
         if (!is_null($imagen)) {
             $ruta_imagen = public_path('perfil_img/');
             $nombre_imagen = $imagen->getClientOriginalName();
             $imagen->move($ruta_imagen, $nombre_imagen);
             $usuario_nuevo['imagen'] = $nombre_imagen;
         } */
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $detination_path = 'public/images/users';
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
@@ -132,6 +138,24 @@ class UsuariosController extends Controller
             return redirect('/usuarios')->with('mensaje', 'Se elimino el usuario');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/usuarios')->with('error', $e->getMessage());
+        }
+    }
+    public function restablecerPassword($id)
+    {
+        $usuario = Usuario::find($id);
+        return view('restablecerP_U', compact('usuario'));
+    }
+    public function actualizarPassword(Request $request, $id)
+    {
+        $actualizar = $request->all();
+        if ($actualizar['password'] != $actualizar['password2']) {
+            return back()->withErrors(['password' => 'Verifique lo ingresado']);
+        } else {
+            $actualizar['password'] = Hash::make($actualizar['password']);
+            $new_pass = Usuario::where('id', $id)->first();
+            $new_pass->password = $actualizar['password'];
+            $new_pass->save();
+            return redirect('/usuarios');
         }
     }
 }
