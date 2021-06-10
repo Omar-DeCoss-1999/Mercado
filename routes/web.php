@@ -32,9 +32,10 @@ Route::put('actualizarProducto/{id}', 'App\Http\Controllers\ProductosController@
 Route::get('productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
 Route::get('editarProducto/{id}' ,'App\Http\Controllers\ProductosController@edit');
 Route::post('deleteProducto/{id}' ,'App\Http\Controllers\ProductosController@destroy');
+
 Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
 Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
-Route::get('salir', 'App\Http\Controllers\AutenticarIngreso@logout');
+Route::get('salir', 'App\Http\Controllers\AutenticarIngreso@salir');
 // Route::get('salir', function () {
 //     Auth::logout();
 //     return Redirect::to('/');

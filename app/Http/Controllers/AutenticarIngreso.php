@@ -76,7 +76,7 @@ class AutenticarIngreso extends Controller
 
     //     return $this->loggedOut($request) ?: redirect('/');
     // }
-    public function logout()
+    public function salir()
     {
         Auth::logout();
         return redirect('/');
@@ -109,7 +109,7 @@ class AutenticarIngreso extends Controller
             $new_pass = Usuario::where('correo', $email)->first();
             $new_pass->password = $password['password'];
             $new_pass->save();
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }
