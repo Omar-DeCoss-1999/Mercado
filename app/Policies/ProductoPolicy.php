@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Usuario;
 use App\Models\Producto;
 use App\Models\ProductosConsignados;
+use App\Models\ProductosEnCategoria;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProductoPolicy
@@ -20,9 +21,18 @@ class ProductoPolicy
         return $producto->concesionado != 1;
     }
 
-    public function comprar(Usuario $usuario, ProductosConsignados $producto){
-        return $producto->id_usuarios !=  $usuario->id && $usuario->rol == 'Cliente';
+    public function comprar(Usuario $usuario, ProductosEnCategoria $producto){
+        return $producto->id_usuarios !=  $usuario->id && $usuario->rol == 'Cliente';  
     }
+
+    public function productoConcesionado(Usuario $usuario, ProductosConsignados $producto){
+        return true;
+    }
+
+    public function editar(Usuario $usuario, ProductosEnCategoria $producto){
+        return $producto->id_usuarios == $usuario->id; 
+    }
+
     /**
      * Determine whether the user can view any models.
      *
@@ -64,7 +74,7 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function update(Usuario $usuario, ProductosConsignados $producto)
+    public function update(Usuario $usuario, ProductosEnCategoria $producto)
     {
         return $producto->id_usuarios == $usuario->id;
     }
@@ -76,7 +86,7 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function delete(Usuario $usuario, ProductosConsignados $producto)
+    public function delete(Usuario $usuario, ProductosEnCategoria $producto)
     {
         if ( $usuario->rol == "Contador") return false;
         if ( $usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return !$producto->concesionado;

@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class ProductosEnCategoria extends Producto
 {
@@ -18,6 +16,7 @@ class ProductosEnCategoria extends Producto
             'productos.descripcion',
             'productos.precio',
             'productos.cantidad',
+            'productos.id_usuarios',
             'productos.id_categorias')->join('categorias', 'productos.id_categorias', '=', "categorias.id");
         });
     }

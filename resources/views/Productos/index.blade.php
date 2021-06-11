@@ -42,16 +42,22 @@
             <td>{{$productos->cantidad}}</td>
             <td>
                 <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Ver</a>
+                @can('editar', $productos)
                 <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
+                @endcan
+                @can('comprar', $productos)
                 <form action="/comprar/{{$productos->id}}" method="post">
                     @csrf
                     <input type="submit" class="btn btn-success" value="Comprar">
                 </form>
+                @endcan
+                @can('delete', $productos)
                 <form action="/deleteProducto/{{$productos->id}}" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="submit" class="btn btn-danger" value="Eliminar">
                 </form>
+                @endcan
             </td>
         </tr>
         @empty

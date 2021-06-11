@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        /*         Gate::define('comprar', function ($user, Producto $producto){
+/*         Gate::define('comprar', function ($user, Producto $producto){
             return $user->rol == "Cliente" && $producto->id_usuarios != $user->id;
         }); */
     }
