@@ -20,9 +20,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-/*         Producto::class => ProductoPolicy::class,
-        Pregunta::class => PreguntaPolicy::class, */
-        Producto::class => ProductosPolicy::class,
+        Producto::class => ProductoPolicy::class,
+        Pregunta::class => PreguntaPolicy::class,
     ];
 
     /**
@@ -34,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-/*         Gate::define('comprar', function ($user, Producto $producto){
+        /*         Gate::define('comprar', function ($user, Producto $producto){
             return $user->rol == "Cliente" && $producto->id_usuarios != $user->id;
         }); */
     }

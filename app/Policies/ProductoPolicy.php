@@ -5,9 +5,7 @@ namespace App\Policies;
 use App\Models\Usuario;
 use App\Models\Producto;
 use App\Models\ProductosConsignados;
-use App\Models\ProductosEnCategoria;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class ProductoPolicy
 {
@@ -15,7 +13,7 @@ class ProductoPolicy
 
     //politica = el usuario es anonimo no le aparecera un producto
     public function preguntar(Usuario $usuario, Producto $producto){
-        return Auth::user()->rol == "Cliente" && $producto->id_usuarios != Auth::user()->id;
+        return $usuario->rol == "Cliente" && $producto->id_usuarios != $usuario->id;
     }
 
     public function cambios(Usuario $usuario, Producto $producto){
@@ -23,7 +21,7 @@ class ProductoPolicy
     }
 
     public function comprar(Usuario $usuario, ProductosConsignados $producto){
-        return $producto->id_usuarios != Auth::user()->id && Auth::user()->rol == 'Cliente';
+        return $producto->id_usuarios !=  $usuario->id && $usuario->rol == 'Cliente';
     }
     /**
      * Determine whether the user can view any models.
@@ -54,9 +52,9 @@ class ProductoPolicy
      * @param  \  $
      * @return mixed
      */
-    public function create()
+    public function create(Usuario $usuario)
     {
-        return Auth::user()->rol == 'Cliente';
+        return $usuario->rol == 'Cliente';
     }
 
     /**
@@ -66,9 +64,9 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function update(ProductosConsignados $producto, Usuario $usuario)
+    public function update(Usuario $usuario, ProductosConsignados $producto)
     {
-        return $producto->id_usuarios == Auth::user()->id;
+        return $producto->id_usuarios == $usuario->id;
     }
 
     /**
@@ -78,11 +76,11 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function delete(ProductosConsignados $producto, Usuario $usuario)
+    public function delete(Usuario $usuario, ProductosConsignados $producto)
     {
-        if ( Auth::user()->rol == "Contador") return false;
-        if ( Auth::user()->rol == "Supervisor" || Auth::user()->rol == "Encargado") return !$producto->concesionado;
-        if ( Auth::user()->rol == "Cliente") return !$producto->concesionado && $producto->id_usuarios == Auth::user()->id;
+        if ( $usuario->rol == "Contador") return false;
+        if ( $usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return !$producto->concesionado;
+        if ( $usuario->rol == "Cliente") return !$producto->concesionado && $producto->id_usuarios == $usuario->id;
     }
 
     /**
