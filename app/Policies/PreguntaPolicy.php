@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\Pregunta;
-use App\Models\Producto;
 use App\Models\ProductosEnCategoria;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;

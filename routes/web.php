@@ -66,8 +66,8 @@ Route::get('productosComprados', 'ProductosController@comprasProducto');
 Route::get('register', 'RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'RegistrarNuevoUsuario@registrarBD');
 
-Route::resource('usuarios', UsuariosController::class);
-Route::get('usuarios/{id}');
+Route::get('usuarios', 'UsuariosController@index');
+Route::get('usuarios/{id}' ,'UsuariosController@show');
 Route::post('usuarios/{id}', 'UsuariosController@update');
 Route::get('restablecer/{id}', 'UsuariosController@restablecerPassword');
 Route::put('usuarios/restablecer/{id}', 'UsuariosController@actualizarPassword');
