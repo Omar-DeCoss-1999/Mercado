@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ComprasController extends Controller
 {
@@ -79,7 +80,8 @@ class ComprasController extends Controller
     public function update(Request $request, $id)
     {
         $valores = $request->all();
-        if (is_null($valores['imagen'])){
+        $imagen = $request->file('imagen');
+        if (is_null($imagen)){
             return back()->withErrors(['imagen' => 'No imgresó su pago']);
         } else{
             $registrar = Compra::find($id);
@@ -88,6 +90,7 @@ class ComprasController extends Controller
             $registrar->h_compra = date('Y-m-d');
 
             //Acá descuentas en el producto
+            
             return redirect()->back();
         }
     }
