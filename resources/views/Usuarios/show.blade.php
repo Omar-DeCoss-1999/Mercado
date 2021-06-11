@@ -8,7 +8,7 @@
             <h4><img src="{{asset('/perfil_img/'.$usuario->imagen)}}" width="50px" height="50px">
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('usuarios.index') }}">Regresar</a>
+            <a class="btn btn-primary" href="/usuarios">Regresar</a>
         </div>
     </div>
 </div>
