@@ -21,7 +21,7 @@ class UsuariosController extends Controller
             $usuario = Usuario::all()
                 ->where('rol', "!=", "Supervisor")
                 ->where('id', "!=", Auth::user()->id);
-            return view('Usuarios.index', compact('usuario'));
+            return view('Usuarios.index', compact('usuario')); 
         } else {
             $usuario = Usuario::all();
             return view('Usuarios.index', compact('usuario'));
