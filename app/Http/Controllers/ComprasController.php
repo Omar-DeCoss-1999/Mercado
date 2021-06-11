@@ -40,7 +40,7 @@ class ComprasController extends Controller
         $comprando->id_productos = $id;
         $comprando->h_compra = date('Y-m-d');
         $comprando->id_usuarios = auth()->user()->id;
-        $comprando->compra_autorizada = true;
+        $comprando->compra_autorizada = false;
         //$comprando->c_pago = $request->input('imagen')
         $comprando->c_pago = 'prueba.jpg';
         $comprando->save();
@@ -78,7 +78,18 @@ class ComprasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $valores = $request->all();
+        if (is_null($valores['imagen'])){
+            return back()->withErrors(['imagen' => 'No imgresó su pago']);
+        } else{
+            $registrar = Compra::find($id);
+            $registrar->c_pago = request()->input('imagen');
+            $registrar->compra_autorizada = true;
+            $registrar->h_compra = date('Y-m-d');
+
+            //Acá descuentas en el producto
+            return redirect()->back();
+        }
     }
 
     /**
