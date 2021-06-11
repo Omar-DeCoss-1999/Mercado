@@ -19,7 +19,8 @@ class UsuariosController extends Controller
     {
         if(Auth::user()->rol == 'Encargado'){
             $usuario = Usuario::all()
-                ->where('rol', "!=", "Supervisor");
+                ->where('rol', "!=", "Supervisor")
+                ->where('id', "!=", Auth::user()->id);
             return view('Usuarios.index', compact('usuario'));
         } else {
             $usuario = Usuario::all();
