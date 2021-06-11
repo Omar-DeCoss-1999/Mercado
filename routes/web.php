@@ -6,6 +6,8 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\AutenticarIngreso;
 use App\Http\Controllers\RegistrarNuevoUsuario;
 use Illuminate\Support\Facades\Route;
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,51 +20,64 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\CategoriasController@index');
+Route::get('/', 'CategoriasController@index');
 Route::resource('categorias', CategoriasController::class);
 
-Route::get('productos/{id_categorias}/buscarpor', 'App\Http\Controllers\ProductosController@buscarpor');
-Route::get('productos/{id_categorias}/index', 'App\Http\Controllers\ProductosController@index');
-Route::get('crearProducto', 'App\Http\Controllers\ProductosController@create');
-Route::get('crearCategoria', 'App\Http\Controllers\CategoriasController@create');
-Route::post('producto', 'App\Http\Controllers\ProductosController@store');
-Route::post('categorias', 'App\Http\Controllers\CategoriasController@store');
-Route::put('categorias/{id}', 'App\Http\Controllers\CategoriasController@update');
-Route::put('actualizarProducto/{id}', 'App\Http\Controllers\ProductosController@update');
-Route::get('productos/{id}/show' ,'App\Http\Controllers\ProductosController@show');
-Route::get('editarProducto/{id}' ,'App\Http\Controllers\ProductosController@edit');
-Route::post('deleteProducto/{id}' ,'App\Http\Controllers\ProductosController@destroy');
+Route::get('productos/{id_categorias}/buscarpor', 'ProductosController@buscarpor');
+Route::get('productos/{id_categorias}/index', 'ProductosController@index');
+Route::get('crearProducto', 'ProductosController@create');
+Route::get('crearCategoria', 'CategoriasController@create');
+Route::post('producto', 'ProductosController@store');
+Route::post('categorias', 'CategoriasController@store');
+Route::put('categorias/{id}', 'CategoriasController@update');
+Route::put('actualizarProducto/{id}', 'ProductosController@update');
+Route::get('productos/{id}/show' ,'ProductosController@show');
+Route::get('editarProducto/{id}' ,'ProductosController@edit');
+Route::post('deleteProducto/{id}' ,'ProductosController@destroy');
 
-Route::get('login', 'App\Http\Controllers\AutenticarIngreso@autenticar');
-Route::post('login', 'App\Http\Controllers\AutenticarIngreso@validar');
-Route::get('salir', 'App\Http\Controllers\AutenticarIngreso@salir');
+/* Route::get('login', 'ValidarController@autenticar');
+Route::post('login', 'ValidarController@validar');
+Route::get('salir', 'ValidarController@salir');
+Route::get('olpassword', 'ValidarController@verificarCorreo');
+Route::post('olpassword', 'ValidarController@verificarCorreoR');
+Route::put('olpassword/{email}', 'ValidarController@cambiarContra'); */
+
+Route::get('login', 'AutenticarIngreso@autenticar');
+Route::post('login', 'AutenticarIngreso@validar');
+Route::get('salir', 'AutenticarIngreso@salir');
+
+Route::get('olpassword', 'AutenticarIngreso@verificarCorreo');
+Route::post('olpassword', 'AutenticarIngreso@verificarCorreoR');
+Route::put('olpassword/{email}', 'AutenticarIngreso@cambiarContra');
 // Route::get('salir', function () {
 //     Auth::logout();
 //     return Redirect::to('/');
 // });
-Route::post('pregunta/{id}', 'App\Http\Controllers\PreguntasController@createPregunta');
-Route::put('pregunta/{id}', 'App\Http\Controllers\PreguntasController@createRespuesta');
+Route::post('pregunta/{id}', 'PreguntasController@createPregunta');
+Route::put('pregunta/{id}', 'PreguntasController@createRespuesta');
 
-Route::put('productos/{id}/concesionar', 'App\Http\Controllers\ProductosController@concesionar');
-Route::put('productos/{id}/motivo', 'App\Http\Controllers\ProductosController@motivo');
+Route::put('productos/{id}/concesionar', 'ProductosController@concesionar');
+Route::put('productos/{id}/motivo', 'ProductosController@motivo');
 
-Route::post('comprar/{id}', 'App\Http\Controllers\ComprasController@store');
+Route::post('comprar/{id}', 'ComprasController@store');
 
-Route::get('productosComprados', 'App\Http\Controllers\ProductosController@comprasProducto');
+Route::get('productosComprados', 'ProductosController@comprasProducto');
 
-Route::get('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registroNuevo');
-Route::post('register', 'App\Http\Controllers\RegistrarNuevoUsuario@registrarBD');
-
-Route::get('olpassword', 'App\Http\Controllers\AutenticarIngreso@verificarCorreo');
-Route::post('olpassword', 'App\Http\Controllers\AutenticarIngreso@verificarCorreoR');
-Route::put('olpassword/{email}', 'App\Http\Controllers\AutenticarIngreso@cambiarContra');
+Route::get('register', 'RegistrarNuevoUsuario@registroNuevo');
+Route::post('register', 'RegistrarNuevoUsuario@registrarBD');
 
 Route::resource('usuarios', UsuariosController::class);
 Route::get('usuarios/{id}');
-Route::post('usuarios/{id}', 'App\Http\Controllers\UsuariosController@update');
-Route::get('restablecer/{id}', 'App\Http\Controllers\UsuariosController@restablecerPassword');
-Route::put('usuarios/restablecer/{id}', 'App\Http\Controllers\UsuariosController@actualizarPassword');
-Route::get('editar/{id}', 'App\Http\Controllers\CategoriasController@edit');
+Route::post('usuarios/{id}', 'UsuariosController@update');
+Route::get('restablecer/{id}', 'UsuariosController@restablecerPassword');
+Route::put('usuarios/restablecer/{id}', 'UsuariosController@actualizarPassword');
+Route::get('editar/{id}', 'CategoriasController@edit');
+
+Route::get('contactanos', function(){
+    $correo = new ContactanosMailable;
+    Mail::to('ruizomar003@gmail.com')->send($correo);
+    return redirect('/');
+});
 // Route::get('register', function () {
 //     return view('registro');
 // });

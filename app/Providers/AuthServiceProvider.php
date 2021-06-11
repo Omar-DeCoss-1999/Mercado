@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\ProductosConsignados;
 use App\Policies\PreguntaPolicy;
 use App\Policies\ProductoPolicy;
+use App\Policies\ProductosPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -19,8 +20,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        Producto::class => ProductoPolicy::class,
-        Pregunta::class => PreguntaPolicy::class,
+/*         Producto::class => ProductoPolicy::class,
+        Pregunta::class => PreguntaPolicy::class, */
+        Producto::class => ProductosPolicy::class,
     ];
 
     /**

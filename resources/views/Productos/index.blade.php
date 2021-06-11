@@ -44,12 +44,10 @@
                 <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Ver</a>
 
                 <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
-                @can('comprar', $producto)
                 <form action="/comprar/{{$productos->id}}" method="post">
                     @csrf
                     <input type="submit" class="btn btn-success" value="Comprar">
                 </form>
-                @endcan
                 <form action="/deleteProducto/{{$productos->id}}" method="post">
                     @csrf
                     @method('DELETE')

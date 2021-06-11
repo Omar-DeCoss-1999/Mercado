@@ -18,7 +18,7 @@ class AutenticarIngreso extends Controller
 
     public function validar(Request $request)
     {
-      $credentials = $this->validate(request(),  [
+        $credentials = $this->validate(request(),  [
             'correo' => 'required|email|string',
             'password' => 'required|string'
         ]);
@@ -27,6 +27,7 @@ class AutenticarIngreso extends Controller
         $contaU = Usuario::count();
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             if (Auth::user()->rol == 'Contador') {
                 return view('Tablero.conta');
             }
@@ -36,7 +37,7 @@ class AutenticarIngreso extends Controller
             return redirect('/');
         }
         return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
-/*         $usuario_name = $request->input('correo');
+        /*         $usuario_name = $request->input('correo');
         $usuario = Usuario::where('correo', $usuario_name)->first();
         if (is_null($usuario)) {
             return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
@@ -68,14 +69,16 @@ class AutenticarIngreso extends Controller
     //     $request->session()->regenerateToken();
     //     return redirect('/');
     // }
-    // public function logout(Request $request)
-    // {
-    //     $this->guard()->logout();
+    /*     public function salir(Request $request)
+    {
+        Auth::logout();
 
-    //     $request->session()->invalidate();
-
-    //     return $this->loggedOut($request) ?: redirect('/');
-    // }
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
+    } */
     public function salir()
     {
         Auth::logout();

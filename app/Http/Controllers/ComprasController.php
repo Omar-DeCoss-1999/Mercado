@@ -36,6 +36,7 @@ class ComprasController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $this->authorize('comprando', $id);
         $comprando = new Compra();
         $comprando->id_productos = $id;
         $comprando->h_compra = date('Y-m-d');
