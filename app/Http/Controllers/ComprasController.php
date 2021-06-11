@@ -97,7 +97,7 @@ class ComprasController extends Controller
             $registrar->save();
             //Acá descuentas en el producto
 
-            return redirect()->back();
+            return redirect('/');
         }
     }
 
