@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<form action="/usuarios/{{}}" method="POST">
+<form action="/usuarios/{{$usuario->id}}/update" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

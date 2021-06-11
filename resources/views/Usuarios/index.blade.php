@@ -21,9 +21,9 @@
             <td>{{$usuarios->correo}}</td>
             <td>{{$usuarios->rol}}</td>
             <td>
-                <form action="{{ route('usuarios.destroy', $usuarios->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('usuarios.show', $usuarios->id) }}">Mostrar</a>
-                    <a class="btn btn-primary" href="{{ route('usuarios.edit', $usuarios->id) }}">Editar</a>
+                <form action="/usuarios/delete/{{$usuarios->id}}" method="POST">
+                    <a class="btn btn-info" href="/usuarios/{{$usuarios->id}}/show">Mostrar</a>
+                    <a class="btn btn-primary" href="/usuarios/{{$usuarios->id}}/edit">Editar</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
