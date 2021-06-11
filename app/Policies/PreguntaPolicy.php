@@ -18,7 +18,7 @@ class PreguntaPolicy
 
     public function responder(Usuario $usuario, Pregunta $pregunta)
     {   
-        return $usuario->rol == "Cliente" && $usuario != $pregunta->id_usuarios;//$pregunta->respuesta == "Sin respuesta";
+        return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
     }
 
     public function moderar(Usuario $usuario)
