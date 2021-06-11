@@ -73,8 +73,8 @@
     </a>
 </div>
 @endsection
-
 @section('cartas')
+
 <div class="container">
     <div class="card">
         <div class="content">
