@@ -19,7 +19,7 @@
             <td>{{$productos->nombre}}</td>
             <td>${{$productos->precio}}</td>
             <td>
-                <form action="" method="POST">
+                <form action="/comprobante/{{$compra->id}}" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="file" name="c_pago" placeholder="Ingrese su comprobante">

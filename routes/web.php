@@ -75,6 +75,8 @@ Route::get('restablecer/{id}', 'UsuariosController@restablecerPassword');
 Route::put('usuarios/restablecer/{id}', 'UsuariosController@actualizarPassword');
 Route::get('editar/{id}', 'CategoriasController@edit');
 
+Route::put('comprobante/{id}', 'ComprasController@update');
+
 Route::get('contactanos', function(){
     $correo = new ContactanosMailable;
     Mail::to('ruizomar003@gmail.com')->send($correo);
