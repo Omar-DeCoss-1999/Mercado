@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 
+
 class UsuariosController extends Controller
 {
     /**

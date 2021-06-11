@@ -70,16 +70,17 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],*/
-       'users' => [
+
+/*        'users' => [
             'driver' => 'database',
             'table' => 'usuarios',
-        ],
-        /*
+        ], */
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\Usuario::class,
         ],
-        */
+
     ],
 
     /*

@@ -8,7 +8,6 @@
 </head>
 <body>
     <h1>Correo Electronico</h1>
-    <h1>Erikc Te amo</h1>
     <p>Este es el primer correo que mandaré por laravel</p>
 </body>
 </html>

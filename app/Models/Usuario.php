@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authentication;
 
-class Usuario extends Model
+class Usuario extends Authentication
 {
     public $timestamps = false;
     protected $fillable = ['nombre', 'a_paterno', 'a_materno', 'correo', 'imagen', 'rol', 'ativo', 'password'];

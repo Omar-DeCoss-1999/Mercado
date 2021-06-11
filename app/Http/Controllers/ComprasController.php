@@ -36,11 +36,11 @@ class ComprasController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $this->authorize('comprando', $id);
+        //$this->authorize('comprando', $id);
         $comprando = new Compra();
         $comprando->id_productos = $id;
         $comprando->h_compra = date('Y-m-d');
-        $comprando->id_usuarios = Auth::user()->id;
+        $comprando->id_usuarios = auth()->user()->id;
         $comprando->compra_autorizada = true;
         //$comprando->c_pago = $request->input('imagen')
         $comprando->c_pago = 'prueba.jpg';

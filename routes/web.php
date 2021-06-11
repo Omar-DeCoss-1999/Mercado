@@ -34,21 +34,21 @@ Route::put('actualizarProducto/{id}', 'ProductosController@update');
 Route::get('productos/{id}/show' ,'ProductosController@show');
 Route::get('editarProducto/{id}' ,'ProductosController@edit');
 Route::post('deleteProducto/{id}' ,'ProductosController@destroy');
-
-/* Route::get('login', 'ValidarController@autenticar');
+ 
+Route::get('login', 'ValidarController@autenticar');
 Route::post('login', 'ValidarController@validar');
 Route::get('salir', 'ValidarController@salir');
 Route::get('olpassword', 'ValidarController@verificarCorreo');
 Route::post('olpassword', 'ValidarController@verificarCorreoR');
-Route::put('olpassword/{email}', 'ValidarController@cambiarContra'); */
+Route::put('olpassword/{email}', 'ValidarController@cambiarContra');
 
-Route::get('login', 'AutenticarIngreso@autenticar');
+/* Route::get('login', 'AutenticarIngreso@autenticar');
 Route::post('login', 'AutenticarIngreso@validar');
 Route::get('salir', 'AutenticarIngreso@salir');
 
 Route::get('olpassword', 'AutenticarIngreso@verificarCorreo');
 Route::post('olpassword', 'AutenticarIngreso@verificarCorreoR');
-Route::put('olpassword/{email}', 'AutenticarIngreso@cambiarContra');
+Route::put('olpassword/{email}', 'AutenticarIngreso@cambiarContra'); */
 // Route::get('salir', function () {
 //     Auth::logout();
 //     return Redirect::to('/');
