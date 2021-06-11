@@ -2,7 +2,7 @@
 
 @section('cartas')
 <h2>Usuarios exitentes</h2>
-<a href="{{ route('usuarios.create') }}" class="btn btn-success">Agregar una nuevo usuario</a>
+<a href="/usuarios/create" class="btn btn-success">Agregar una nuevo usuario</a>
 <table class="table table-bordered">
     <thead>
         <tr>

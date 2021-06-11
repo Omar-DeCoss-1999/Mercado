@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Mail;
 */
 
 Route::get('/', 'CategoriasController@index');
-Route::resource('categorias', CategoriasController::class);
+//Route::resource('categorias', CategoriasController::class);
 
 Route::get('productos/{id_categorias}/buscarpor', 'ProductosController@buscarpor');
 Route::get('productos/{id_categorias}/index', 'ProductosController@index');
@@ -67,6 +67,7 @@ Route::get('register', 'RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'RegistrarNuevoUsuario@registrarBD');
 
 Route::get('usuarios', 'UsuariosController@index');
+Route::get('usuarios/create',' UsuariosController@create');
 Route::get('usuarios/{id}' ,'UsuariosController@show');
 Route::post('usuarios/{id}', 'UsuariosController@update');
 Route::get('restablecer/{id}', 'UsuariosController@restablecerPassword');
