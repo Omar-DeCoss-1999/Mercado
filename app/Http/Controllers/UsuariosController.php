@@ -22,6 +22,7 @@ class UsuariosController extends Controller
             return view('Usuarios.index', compact('usuario'));
         } else{
             $usuario = Usuario::all();
+            return view('Usuarios.index', compact('usuario'));
         }
     }
 
