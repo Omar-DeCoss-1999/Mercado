@@ -25,7 +25,6 @@
                     <a class="btn btn-info" href="/usuarios/{{$usuarios->id}}/show">Mostrar</a>
                     <a class="btn btn-primary" href="/usuarios/{{$usuarios->id}}/edit">Editar</a>
                     @csrf
-                    @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
                 <br>

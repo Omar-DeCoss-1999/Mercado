@@ -70,6 +70,7 @@ Route::get('usuarios', 'UsuariosController@index');
 Route::get('usuarios/create',' UsuariosController@create');
 Route::get('usuarios/{id}/show' ,'UsuariosController@show');
 Route::put('usuarios/{id}/update', 'UsuariosController@update');
+Route::post('usuarios/delete/{id}', 'UsuariosController@destroy');
 Route::get('usuarios/{id}/edit', 'UsuariosController@edit');
 Route::get('restablecer/{id}', 'UsuariosController@restablecerPassword');
 Route::put('usuarios/restablecer/{id}', 'UsuariosController@actualizarPassword');
