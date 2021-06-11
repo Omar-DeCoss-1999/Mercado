@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ValidarController extends Controller
 {
-    use Authenticatable;
     
     public function autenticar()
     {
