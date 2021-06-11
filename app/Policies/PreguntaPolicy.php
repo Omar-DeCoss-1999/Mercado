@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Pregunta;
+use App\Models\Producto;
 use App\Models\ProductosEnCategoria;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -16,8 +17,8 @@ class PreguntaPolicy
     }
 
     public function responder(Usuario $usuario, Pregunta $pregunta)
-    {
-        return $usuario->rol == "Cliente" && is_null($pregunta->respuesta);
+    {   
+        return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
     }
 
     public function moderar(Usuario $usuario)

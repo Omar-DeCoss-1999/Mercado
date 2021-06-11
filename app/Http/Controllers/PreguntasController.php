@@ -31,4 +31,9 @@ class PreguntasController extends Controller
         $pregunta->save();
         return redirect()->back();
     }
+
+    public function destroy($id){
+        Pregunta::destroy($id);
+        return redirect()->back();
+    }
 }

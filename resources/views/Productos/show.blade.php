@@ -63,6 +63,13 @@
     <input type="submit" class="btn btn-success" value="Enviar">
 </form>
 @endcan
+@can('moderar', App\Models\Pregunta::class)
+<form action="/eliminarPregunta/{{$pregunta->id}}" method="post">
+    @csrf
+    <a class="btn btn-success" href="/editarPregunta/{{$pregunta->id}}">Moderar</a>
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
+@endcan
 @empty
 <div>
     <p>No existen preguntas para mostrar en este producto</p>

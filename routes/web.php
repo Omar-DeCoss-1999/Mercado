@@ -55,6 +55,7 @@ Route::put('olpassword/{email}', 'AutenticarIngreso@cambiarContra'); */
 // });
 Route::post('pregunta/{id}', 'PreguntasController@createPregunta');
 Route::put('pregunta/{id}', 'PreguntasController@createRespuesta');
+Route::post('/eliminarPregunta/{id}', 'PreguntasController@destroy');
 
 Route::put('productos/{id}/concesionar', 'ProductosController@concesionar');
 Route::put('productos/{id}/motivo', 'ProductosController@motivo');
@@ -77,6 +78,8 @@ Route::put('usuarios/restablecer/{id}', 'UsuariosController@actualizarPassword')
 Route::get('editar/{id}', 'CategoriasController@edit');
 
 Route::put('comprobante/{id}', 'ComprasController@update');
+
+
 
 Route::get('contactanos', function(){
     $correo = new ContactanosMailable;
