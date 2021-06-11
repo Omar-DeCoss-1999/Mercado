@@ -86,7 +86,7 @@ class ProductoPolicy
      * @param  \App\Models\Usuario  $usuario
      * @return mixed
      */
-    public function delete(Usuario $usuario, ProductosEnCategoria $producto)
+    public function delete(Usuario $usuario, Producto $producto)
     {
         if ( $usuario->rol == "Contador") return false;
         if ( $usuario->rol == "Supervisor" || $usuario->rol == "Encargado") return !$producto->concesionado;

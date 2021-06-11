@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactanosMailable;
 use App\Models\Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ComprasController extends Controller
 {
@@ -44,6 +46,8 @@ class ComprasController extends Controller
         //$comprando->c_pago = $request->input('imagen')
         $comprando->c_pago = 'prueba.jpg';
         $comprando->save();
+        $correo = new ContactanosMailable;
+        Mail::to('ruizomar003@gmail.com')->send($correo);
         return redirect()->back();
     }
 

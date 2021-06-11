@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Correo Electronico</h1>
-    <p>Este es el primer correo que mandaré por laravel</p>
+    <h1>Alguien se postuló para comprar tu producto</h1>
 </body>
 </html>

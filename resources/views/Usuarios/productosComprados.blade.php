@@ -22,7 +22,7 @@
                 <form action="/comprobante/{{$productos->id}}" method="POST">
                     @csrf
                     @method('PUT')
-                    <input type="file" name="c_pago" placeholder="Ingrese su comprobante">
+                    <input type="file" name="imagen" placeholder="Ingrese su comprobante">
                     <button type="submit" class="btn btn-success">Enviar comprobante</button>
                 </form>
             </td>
