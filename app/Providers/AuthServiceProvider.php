@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Models\Pregunta;
 use App\Models\Producto;
 use App\Models\ProductosConsignados;
+use App\Models\Usuario;
 use App\Policies\PreguntaPolicy;
 use App\Policies\ProductoPolicy;
 use App\Policies\ProductosPolicy;
+use App\Policies\UsuariosPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Producto::class => ProductoPolicy::class,
         Pregunta::class => PreguntaPolicy::class,
+        Usuario::class => UsuariosPolicy::class,
     ];
 
     /**

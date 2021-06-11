@@ -21,15 +21,17 @@
             <td>{{$usuarios->correo}}</td>
             <td>{{$usuarios->rol}}</td>
             <td>
+                <a class="btn btn-info" href="/usuarios/{{$usuarios->id}}/show">Mostrar</a>
+                @can('eliminar', App\Models\Usuario::class)
                 <form action="/usuarios/delete/{{$usuarios->id}}" method="POST">
-                    <a class="btn btn-info" href="/usuarios/{{$usuarios->id}}/show">Mostrar</a>
                     <a class="btn btn-primary" href="/usuarios/{{$usuarios->id}}/edit">Editar</a>
                     @csrf
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
+                @endcan
                 <br>
                 @if(Auth::user()->rol == 'Encargado')
-                    <a type="submit" class="btn btn-success" href="/restablecer/{{$usuarios->id}}">Restablecer contraseña</a>
+                <a type="submit" class="btn btn-success" href="/restablecer/{{$usuarios->id}}">Restablecer contraseña</a>
                 @endif
             </td>
         </tr>

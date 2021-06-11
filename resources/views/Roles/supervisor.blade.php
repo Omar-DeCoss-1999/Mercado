@@ -63,7 +63,7 @@
 
 @section('usuarioOpciones')
 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-    <a class="dropdown-item" href="/login">
+    <a class="dropdown-item" href="/usuarios/{{auth::user()->id}}/edit">
         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
         Perfil
     </a>
