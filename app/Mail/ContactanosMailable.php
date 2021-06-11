@@ -11,7 +11,7 @@ class ContactanosMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Información de contacto";
+    public $subject = "¡Alguien le interesó tu producto!";
 
     /**
      * Create a new message instance.
