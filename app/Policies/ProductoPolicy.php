@@ -13,8 +13,9 @@ class ProductoPolicy
 {
     use HandlesAuthorization;
 
+    //politica = el usuario es anonimo no le aparecera un producto
     public function preguntar(Usuario $usuario, Producto $producto){
-        return Auth::user()->rol == "Cliente" && $producto->id_usuarios != Auth::user()->id;     
+        return Auth::user()->rol == "Cliente" && $producto->id_usuarios != Auth::user()->id;
     }
 
     public function cambios(Usuario $usuario, Producto $producto){

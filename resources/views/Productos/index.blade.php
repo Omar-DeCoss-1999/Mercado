@@ -42,7 +42,6 @@
             <td>Total = {{$productos->cantidad}}</td>
             <td>
                 <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Ver</a>
-
                 <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
                 <form action="/comprar/{{$productos->id}}" method="post">
                     @csrf

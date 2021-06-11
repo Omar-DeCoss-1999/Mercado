@@ -25,7 +25,7 @@ class ProductosController extends Controller
     {
         /*         if (Auth::user()->rol == "Cliente")
             $producto = Producto::where('id_usuarios', Auth::id())->get();
-        else 
+        else
             $producto = Producto::all(); */
         $producto = ProductosEnCategoria::all()
             ->whereIn('concesionado', ProductosConsignados::select('concesionado'))
@@ -40,7 +40,7 @@ class ProductosController extends Controller
 
         if ($busqueda != '') { //si estamos buscando algo (campo de texto lleno)
             $producto = DB::table('productos')
-                ->select('imagen', 'nombre', 'descripcion', 'precio')
+                ->select('imagen', 'nombre', 'descripcion', 'precio', 'cantidad','id')
                 ->where('id_categorias', '=', $id_categoria)
                 ->where('nombre', 'LIKE', '%' . $busqueda . '%')
                 //->orWhere('descripcion','LIKE','%'.$busqueda.'%')
@@ -176,7 +176,7 @@ class ProductosController extends Controller
         $producto->save();
         return redirect()->back();
     }
-    
+
     public function motivo(Request $request, $id){
         $producto = Producto::find($id);
         $producto->motivo = $request->input('motivo');
