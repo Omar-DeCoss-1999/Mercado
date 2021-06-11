@@ -61,18 +61,6 @@
 </li>
 @endsection
 
-@section('usuarioOpciones')
-<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-    <a class="dropdown-item" href="/usuarios/{{auth::user()->id}}/edit">
-        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-        Perfil
-    </a>
-    <a class="dropdown-item" href="/salir" data-toggle="modal" data-target="#logoutModal">
-        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-        Cerrar sesión
-    </a>
-</div>
-@endsection
 @section('cartas')
 
 <div class="container">

@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </li>
-            
+            @if(Auth::user()->rol == 'Supervisor')
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -103,6 +103,7 @@
                     </div>
                 </div>
             </li>
+            @endif
             @endif
 
             <!-- Divider -->
@@ -213,7 +214,7 @@
                             </div>
                             @else
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/usuarios/{{auth::user()->id}}/edit">
+                                <a class="dropdown-item" href="/usuarios/{{auth()->user()->id}}/edit">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
