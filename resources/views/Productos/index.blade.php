@@ -28,7 +28,7 @@
             <td>Nombre</td>
             <td>Descripción</td>
             <td>Precio</td>
-            <td>Cantidad</td>
+            <td>Stock</td>
             <td>Acciones</td>
         </tr>
     </thead>
@@ -39,7 +39,7 @@
             <td>{{$productos->nombre}}</td>
             <td>{{$productos->descripcion}}</td>
             <td>$ {{$productos->precio}}</td>
-            <td>Total = {{$productos->cantidad}}</td>
+            <td>{{$productos->cantidad}}</td>
             <td>
                 <a class="btn btn-info" href="/productos/{{$productos->id}}/show">Ver</a>
                 <a class="btn btn-primary" href="/editarProducto/{{$productos->id}}">Editar</a>
