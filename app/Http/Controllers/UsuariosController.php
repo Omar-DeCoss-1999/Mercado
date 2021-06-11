@@ -17,12 +17,11 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->rol == "Encargado") {
-            $usuario = Usuario::where('rol', Auth::user()->rol == 'Encargado' || Auth::user()->rol == 'Cliente' || Auth::user()->rol == 'Contador')->get();
-            return view('Usuarios.index', compact('usuario'));
-        } else {
+        if(Auth::user()->rol == 'Encargado'){
             $usuario = Usuario::all();
             return view('Usuarios.index', compact('usuario'));
+        } else{
+            $usuario = Usuario::all();
         }
     }
 

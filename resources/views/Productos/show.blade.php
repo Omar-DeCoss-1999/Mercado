@@ -43,17 +43,18 @@
         </div>
     </div>
 </div>
-
+@can('preguntar', $producto)
 <form action="/pregunta/{{$producto->id}}" method="post">
     @csrf
     <strong>Has una pregunta:</strong>
     <input type="text" name="pregunta" class="form-control" placeholder="Ingresa tu pregunta">
     <input type="submit" class="btn btn-success" value="Enviar">
 </form>
-
+@endcan
 @forelse ($preguntas as $pregunta)
 <p> {{$pregunta->pregunta}} </p>
 <p> {{$pregunta->respuesta}} </p>
+@can('responder', $pregunta)
 <form action="/pregunta/{{$pregunta->id}}" method="post">
     @method('PUT')
     @csrf
@@ -61,12 +62,15 @@
     <input type="text" name="respuesta" class="form-control" placeholder="Ingresa tu respuesta">
     <input type="submit" class="btn btn-success" value="Enviar">
 </form>
+@endcan
 @empty
 <div>
     <p>No existen preguntas para mostrar en este producto</p>
 </div>
 @endforelse
 <br>
+@if(Auth::user() == null)
+@else
 @if(Auth::user()->rol == 'Encargado')
 @if($producto->concesionado == true)
 <form action="/productos/{{$producto->id}}/concesionar" method="post">
@@ -87,6 +91,7 @@
     <input type="text" name="motivo" class="form-control" placeholder="Agregar motivo">
     <input type="submit" class="btn btn-success" value="Enviar">
 </form>
+@endif
 @endif
 @endif
 @endsection

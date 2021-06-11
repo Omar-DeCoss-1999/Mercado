@@ -4,13 +4,14 @@ namespace App\Policies;
 
 use App\Models\Pregunta;
 use App\Models\Producto;
+use App\Models\ProductosEnCategoria;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PreguntaPolicy
 {
     use HandlesAuthorization;
-    public function preguntar(Usuario $usuario, Producto $producto)
+    public function preguntar(Usuario $usuario, ProductosEnCategoria $producto)
     {
         return $usuario->rol == "Cliente" && $usuario->id != $producto->id_usuarios;
     }
