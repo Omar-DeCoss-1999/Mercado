@@ -123,7 +123,7 @@
 </table>
 
 @elseif(Auth::user()->rol == 'Supervisor')
-<a href="categorias/create" class="btn btn-success">Agregar una nueva categoría</a>
+<a href="crearCategoria" class="btn btn-success">Agregar una nueva categoría</a>
 <table class="table table-bordered">
     <thead>
         <tr>

@@ -121,9 +121,14 @@ class UsuariosController extends Controller
             $new_user['imagen'] = $nombre_imagen;
         }
         $registrar = Usuario::find($id);
+        $registrar->nombre = request()->input('nombre');
+        $registrar->a_paterno = request()->input('a_pat');
+        $registrar->a_materno = request()->input('a_mat');
+        $registrar->correo = request()->input('correo');
         $registrar->fill($valores);
         $registrar->save();
         return redirect('/usuarios');
+
     }
 
     /**

@@ -7,7 +7,7 @@
             <h2>Editar categoría</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('categorias.index') }}">Regresar</a>
+            <a class="btn btn-primary" href="/">Regresar</a>
         </div>
     </div>
 </div>

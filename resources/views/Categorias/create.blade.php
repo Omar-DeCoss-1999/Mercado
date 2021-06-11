@@ -7,7 +7,7 @@
             <h2>Agregar nueva categoria</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('categorias.index') }}">Regresar</a>
+            <a class="btn btn-primary" href="/">Regresar</a>
         </div>
     </div>
 </div>
