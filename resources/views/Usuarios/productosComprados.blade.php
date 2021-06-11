@@ -15,7 +15,7 @@
     <tbody>
         @forelse ($producto as $productos)
         <tr>
-            <td> <img src="{{ asset('/productos_img/'.$productos->imagen) }}"</td>
+            <td> <img src="{{ asset('/productos_img/'.$productos->imagen) }}" </td>
             <td>{{$productos->nombre}}</td>
             <td>${{$productos->precio}}</td>
             <td>
@@ -23,11 +23,11 @@
                     @csrf
                     @method('PUT')
                     <input type="file" name="imagen" placeholder="Ingrese su comprobante">
+                    <label>Calificación:
+                        <input type="number" name="calificacion">
+                    </label>
                     <button type="submit" class="btn btn-success">Enviar comprobante</button>
                 </form>
-                <label>Calificación:
-                <input type="number" name="calificacion">
-                </label>
             </td>
         </tr>
         @empty

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Compra extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['h_compra', 'compra_autorizada', 'c_pago', 'id_productos', 'id_usuarios'];
+    protected $fillable = ['h_compra', 'compra_autorizada', 'c_pago', 'calificacion', 'id_productos', 'id_usuarios'];
     
     public function usuario(){
         return $this->belongsTo('App\Models\Usuario', 'id', 'id_usuarios');

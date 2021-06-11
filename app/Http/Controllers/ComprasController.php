@@ -44,6 +44,7 @@ class ComprasController extends Controller
         $comprando->id_usuarios = auth()->user()->id;
         $comprando->compra_autorizada = false;
         //$comprando->c_pago = $request->input('imagen')
+        $comprando->calificacion = 0;
         $comprando->c_pago = 'prueba.jpg';
         $comprando->save();
         $correo = new ContactanosMailable;
@@ -88,9 +89,10 @@ class ComprasController extends Controller
         } else{
             $registrar = Compra::find($id);
             $registrar->c_pago = request()->input('imagen');
+            $registrar->calificacion = request()->input('calificacion');
             $registrar->compra_autorizada = true;
             $registrar->h_compra = date('Y-m-d');
-
+            $registrar->save();
             //Acá descuentas en el producto
             return redirect()->back();
         }

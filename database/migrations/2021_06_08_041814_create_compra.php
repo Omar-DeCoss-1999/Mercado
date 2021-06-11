@@ -18,6 +18,7 @@ class CreateCompra extends Migration
             $table->timestamp('h_compra');
             $table->boolean('compra_autorizada');
             $table->string('c_pago', 100);
+            $table->float('calificacion');
             $table->unsignedInteger('id_productos');
             $table->unsignedInteger('id_usuarios');
         });
