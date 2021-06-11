@@ -185,7 +185,8 @@ class ProductosController extends Controller
     }
 
     public function comprasProducto(Request $request){
-        $producto = ProductosComprados::all()->where('id_usuarios', Auth::user()->id);
+        $producto = ProductosComprados::all()
+            ->where('id_usuarios', Auth::user()->id);
         return view('Usuarios.productosComprados', compact('producto'));
     }
 }
