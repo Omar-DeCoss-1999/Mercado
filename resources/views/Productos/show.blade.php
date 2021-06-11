@@ -54,7 +54,7 @@
 @forelse ($preguntas as $pregunta)
 <p> {{$pregunta->pregunta}} </p>
 <p> {{$pregunta->respuesta}} </p>
-@can('responder', $pregunta)
+@can('responder', $producto)
 <form action="/pregunta/{{$pregunta->id}}" method="post">
     @method('PUT')
     @csrf

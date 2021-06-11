@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Pregunta;
 use App\Models\Producto;
+use App\Models\ProductosConsignados;
 use App\Models\ProductosEnCategoria;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -16,9 +17,10 @@ class PreguntaPolicy
         return $usuario->rol == "Cliente" && $usuario->id != $producto->id_usuarios;
     }
 
-    public function responder(Usuario $usuario, Pregunta $pregunta)
+    public function responder(Usuario $usuario, ProductosEnCategoria $producto)
     {   
-        return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
+        //return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
+        return $usuario->id == $producto->id_usuarios;
     }
 
     public function moderar(Usuario $usuario)

@@ -96,7 +96,6 @@ class ComprasController extends Controller
             $registrar->h_compra = date('Y-m-d');
             $registrar->save();
             //Acá descuentas en el producto
-
             return redirect('/');
         }
     }

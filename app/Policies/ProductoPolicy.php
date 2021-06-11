@@ -25,10 +25,6 @@ class ProductoPolicy
         return $producto->id_usuarios !=  $usuario->id && $usuario->rol == 'Cliente';  
     }
 
-    public function productoConcesionado(Usuario $usuario, ProductosConsignados $producto){
-        return true;
-    }
-
     public function editar(Usuario $usuario, ProductosEnCategoria $producto){
         return $producto->id_usuarios == $usuario->id; 
     }
