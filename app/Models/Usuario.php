@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authentication;
 class Usuario extends Authentication
 {
     public $timestamps = false;
-    protected $fillable = ['nombre', 'a_paterno', 'a_materno', 'correo', 'imagen', 'rol', 'ativo', 'password'];
+    protected $fillable = ['nombre', 'a_paterno', 'a_materno', 'correo', 'imagen', 'rol', 'activo', 'password'];
 
     public function pregunta(){
         return $this->hasMany('App\Models\Pregunta');
