@@ -20,7 +20,7 @@ class UsuariosController extends Controller
         if(Auth::user()->rol == 'Encargado'){
             $usuario = Usuario::all();
             return view('Usuarios.index', compact('usuario'));
-        } else{
+        } else {
             $usuario = Usuario::all();
             return view('Usuarios.index', compact('usuario'));
         }
