@@ -25,6 +25,9 @@
                     <input type="file" name="imagen" placeholder="Ingrese su comprobante">
                     <button type="submit" class="btn btn-success">Enviar comprobante</button>
                 </form>
+                <label>Calificación:
+                <input type="number" name="calificacion">
+                </label>
             </td>
         </tr>
         @empty

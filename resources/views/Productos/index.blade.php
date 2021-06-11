@@ -54,7 +54,6 @@
                 @can('delete', $productos)
                 <form action="/deleteProducto/{{$productos->id}}" method="post">
                     @csrf
-                    @method('DELETE')
                     <input type="submit" class="btn btn-danger" value="Eliminar">
                 </form>
                 @endcan
