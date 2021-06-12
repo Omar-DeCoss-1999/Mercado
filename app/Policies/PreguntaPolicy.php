@@ -17,11 +17,11 @@ class PreguntaPolicy
         return $usuario->rol == "Cliente" && $usuario->id != $producto->id_usuarios;
     }
 
-    public function responder(Usuario $usuario, ProductosEnCategoria $producto)
+/*     public function responder(Usuario $usuario, ProductosEnCategoria $producto)
     {   
         //return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
         return $usuario->id == $producto->id_usuarios;
-    }
+    } */
 
     public function moderar(Usuario $usuario)
     {

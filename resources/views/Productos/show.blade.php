@@ -52,8 +52,8 @@
 </form>
 @endcan
 @forelse ($preguntas as $pregunta)
-<p> {{$pregunta->pregunta}} </p>
-<p> {{$pregunta->respuesta}} </p>
+<p> Pregunta: {{$pregunta->pregunta}} </p>
+<p> Respuesta: {{$pregunta->respuesta}} </p>
 @can('responder', $producto)
 <form action="/pregunta/{{$pregunta->id}}" method="post">
     @method('PUT')

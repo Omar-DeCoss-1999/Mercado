@@ -28,6 +28,11 @@ class ProductoPolicy
     public function editar(Usuario $usuario, ProductosEnCategoria $producto){
         return $producto->id_usuarios == $usuario->id; 
     }
+    public function responder(Usuario $usuario, Producto $producto)
+    {   
+        //return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
+        return $usuario->id == $producto->id_usuarios;
+    }
 
     /**
      * Determine whether the user can view any models.
