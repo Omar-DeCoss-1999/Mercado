@@ -19,10 +19,11 @@
             <td>{{$productos->nombre}}</td>
             <td>${{$productos->precio}}</td>
             <td>
-                <form action="/comprobante/{{$productos->id}}" method="POST">
+                <form action="/comprobante/{{$productos->id}}" method="POST"
+                  enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <input type="file" name="imagen" placeholder="Ingrese su comprobante">
+                    <input type="file" name="captura">
                     <label>Calificación:
                         <input type="number" name="calificacion">
                     </label>
