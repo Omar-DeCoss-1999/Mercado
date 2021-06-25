@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Usuario;
 use App\Models\Producto;
+use App\Models\ProductosComprados;
 use App\Models\ProductosConsignados;
 use App\Models\ProductosEnCategoria;
 use Illuminate\Auth\Access\HandlesAuthorization;
