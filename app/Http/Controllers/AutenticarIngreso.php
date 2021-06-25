@@ -37,48 +37,8 @@ class AutenticarIngreso extends Controller
             return redirect('/');
         }
         return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
-        /*         $usuario_name = $request->input('correo');
-        $usuario = Usuario::where('correo', $usuario_name)->first();
-        if (is_null($usuario)) {
-            return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
-        } else {
-            $password = $request->input('password');
-            $password_user = $usuario->password;
-            if (Hash::check($password, $password_user)) {
-                Auth::login($usuario);
-                if ($usuario->rol == 'Contador') {
-                    return view('Tablero.conta');
-                }
-                if ($usuario->rol != 'Cliente') {
-                    $contaP = Producto::count();
-                    $contaC = Categoria::count();
-                    $contaU = Usuario::count();
-                    return view('Roles.supervisor', compact('contaP', 'contaC', 'contaU'));
-                }
-                return redirect('/');
-            } else {
-                return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
-            }
-        } */
     }
 
-    // public function logout(Request $request)
-    // {
-    //     Auth::logout();
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-    //     return redirect('/');
-    // }
-    /*     public function salir(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-    
-        $request->session()->regenerateToken();
-    
-        return redirect('/');
-    } */
     public function salir()
     {
         Auth::logout();
