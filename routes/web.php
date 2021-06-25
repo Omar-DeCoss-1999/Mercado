@@ -64,6 +64,8 @@ Route::post('comprar/{id}', 'ComprasController@store');
 
 Route::get('productosComprados', 'ProductosController@comprasProducto');
 
+Route::get('autorizar/{id}', 'ProductosController@autorizarCompra');
+
 Route::get('register', 'RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'RegistrarNuevoUsuario@registrarBD');
 

@@ -189,4 +189,9 @@ class ProductosController extends Controller
             ->where('id_usuarios', Auth::user()->id);
         return view('Usuarios.productosComprados', compact('producto'));
     }
+
+    public function autorizarCompra($id){
+        $compras = ProductosComprados::find($id);
+        return view('Tablero.autorizar', compact('compras'));
+    }
 }
