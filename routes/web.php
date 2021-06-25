@@ -34,7 +34,7 @@ Route::put('actualizarProducto/{id}', 'ProductosController@update');
 Route::get('productos/{id}/show' ,'ProductosController@show');
 Route::get('editarProducto/{id}' ,'ProductosController@edit');
 Route::post('deleteProducto/{id}' ,'ProductosController@destroy');
- 
+
 Route::get('login', 'ValidarController@autenticar');
 Route::post('login', 'ValidarController@validar');
 Route::get('salir', 'ValidarController@salir');
