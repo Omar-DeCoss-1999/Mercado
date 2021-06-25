@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Producto;
+use App\Models\ProductosComprados;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ValidarController extends Controller
 {
-    
+
     public function autenticar()
     {
         return view('login');
@@ -30,7 +31,8 @@ class ValidarController extends Controller
             if (Hash::check($password_ingresado, $password_base)) {
                 Auth::login($usuario);
                 if ($usuario->rol == 'Contador') {
-                    return view('Tablero.conta');
+                    $compras = ProductosComprados::all();
+                    return view('Tablero.conta', compact('compras'));
                 }
                 if ($usuario->rol == 'Supervisor') {
                     $contaP = Producto::count();
@@ -45,31 +47,35 @@ class ValidarController extends Controller
         }
     }
 
-    public function salir(){
+    public function salir()
+    {
         Auth::logout();
         return redirect('/');
     }
 
-    public function verificarCorreo(){
+    public function verificarCorreo()
+    {
         return view('Rpassword');
     }
 
-    public function verificarCorreoR(Request $request){
+    public function verificarCorreoR(Request $request)
+    {
         $correo = $request->input('correo');
         $correo_valido  = Usuario::where('correo', $correo)->first();
 
-        if (is_null($correo_valido)){
+        if (is_null($correo_valido)) {
             return back()->withErrors(['correo' => 'Este correo no coincide con nuestros registros']);
-        } else{
+        } else {
             return view('actualizarPassword', compact('correo'));
         }
     }
 
-    public function cambiarContra(Request $request, $email){
+    public function cambiarContra(Request $request, $email)
+    {
         $password = $request->all();
-        if ($password['password'] != $password['password2']){
+        if ($password['password'] != $password['password2']) {
             return back()->withErrors(['password' => 'Verifique lo ingresado']);
-        } else{
+        } else {
             $password['password'] = Hash::make($password['password']);
             $new_pass = Usuario::where('correo', $email)->first();
             $new_pass->password = $password['password'];

@@ -57,6 +57,7 @@
                     <input type="submit" class="btn btn-danger" value="Eliminar">
                 </form>
                 @endcan
+                <a class="btn btn-info" href="">Validar</a>
             </td>
         </tr>
         @empty
