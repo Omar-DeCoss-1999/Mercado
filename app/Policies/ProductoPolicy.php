@@ -22,14 +22,14 @@ class ProductoPolicy
     }
 
     public function comprar(Usuario $usuario, ProductosEnCategoria $producto){
-        return $producto->id_usuarios !=  $usuario->id && $usuario->rol == 'Cliente';  
+        return $producto->id_usuarios !=  $usuario->id && $usuario->rol == 'Cliente';
     }
 
     public function editar(Usuario $usuario, ProductosEnCategoria $producto){
-        return $producto->id_usuarios == $usuario->id; 
+        return $producto->id_usuarios == $usuario->id;
     }
     public function responder(Usuario $usuario, Producto $producto)
-    {   
+    {
         //return $usuario->rol == "Cliente" && $pregunta->respuesta == "Sin respuesta";
         return $usuario->id == $producto->id_usuarios;
     }

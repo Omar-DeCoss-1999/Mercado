@@ -105,7 +105,7 @@ class ComprasController extends Controller
         } else {
           return "Ingrese un comprobante de pago";
         }
-    }
+    }v
 
     /**
      * Remove the specified resource from storage.
