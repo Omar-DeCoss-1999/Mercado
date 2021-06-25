@@ -5,7 +5,7 @@
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>Usuario</h2>
-            <h4><img src="{{asset('/perfil_img/'.$usuario->imagen)}}" width="50px" height="50px">
+            <h4><img src="{{ asset('storage').'/'.'usuarios'.'/'.$usuario->imagen }}" width="250px" height="250px">
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="/usuarios">Regresar</a>

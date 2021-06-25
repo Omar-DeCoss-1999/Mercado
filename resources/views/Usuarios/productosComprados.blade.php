@@ -15,7 +15,9 @@
     <tbody>
         @forelse ($producto as $productos)
         <tr>
-            <td> <img src="{{ asset('/productos_img/'.$productos->imagen) }}" </td>
+            <td>
+              <img src="{{ asset('storage').'/'.'productos'.'/'.$productos->imagen }}" width="150px" height="150px">
+            </td>
             <td>{{$productos->nombre}}</td>
             <td>${{$productos->precio}}</td>
             <td>

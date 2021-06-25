@@ -16,7 +16,9 @@
     <tbody>
         @forelse ($usuario as $usuarios)
         <tr>
-            <td><img src="{{asset('/perfil_img/'.$usuarios->imagen)}}" width="90px" height="90px"></td>
+            <td>
+              <img src="{{ asset('storage').'/'.'usuarios'.'/'.$usuarios->imagen }}" width="100px" height="100px">
+            </td>
             <td>{{$usuarios->nombre}}</td>
             <td>{{$usuarios->correo}}</td>
             <td>{{$usuarios->rol}}</td>

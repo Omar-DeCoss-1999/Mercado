@@ -12,6 +12,7 @@ class ProductosEnCategoria extends Producto
         static::addGlobalScope('concesionado', function (Builder $build) {
             $build->select(
             'productos.id',
+            'productos.imagen',
             'productos.nombre',
             'productos.descripcion',
             'productos.precio',

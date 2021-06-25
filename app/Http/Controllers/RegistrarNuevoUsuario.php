@@ -29,19 +29,21 @@ class RegistrarNuevoUsuario extends Controller
             if($usuario_nuevo['password'] !== $usuario_nuevo['password2']){
               return redirect()->back()->with('error','Las contraseñas ingresadas son diferentes');
             }
-              $imagen = $request->file('imagen');
-              if (!is_null($imagen)){
-                  $ruta_imagen = public_path('perfil_img/');
+              if ($request->hasFile('imagen')){
+                /*$ruta_imagen = public_path('perfil_img/');
                   $nombre_imagen = $imagen->getClientOriginalName();
                   $imagen->move($ruta_imagen,$nombre_imagen);
-                  $usuario_nuevo['imagen']=$nombre_imagen;
+                  $usuario_nuevo['imagen']=$nombre_imagen;*/
+                  $usuario_nuevo['password']=Hash::make($usuario_nuevo['password']);
+                  $imagen_usuario['imagen'] = time().'_'.$request->file('imagen')->getClientOriginalName();
+                  $request->file('imagen')->storeAs('usuarios',$imagen_usuario['imagen']);
+                  $registrar = new Usuario();
+                  $registrar->fill($usuario_nuevo);
+                  $registrar->rol = "Cliente";
+                  $registrar->imagen = $imagen_usuario['imagen'];
+                  $registrar->activo = 1;
+                  $registrar->save();
+                  return redirect('login')->with('success','Te has registrado con exito, ¡Bienvenido!');
               }
-              $usuario_nuevo['password']=Hash::make($usuario_nuevo['password']);
-              $registrar = new Usuario();
-              $registrar->fill($usuario_nuevo);
-              $registrar->rol = "Cliente";
-              $registrar->activo = 1;
-              $registrar->save();
-              return redirect('login')->with('success','Te has registrado con exito, ¡Bienvenido!');           
     }
 }

@@ -84,19 +84,26 @@ class ProductosController extends Controller
             $producto['imagen'] = $nombre_imagen;
         } */
         if ($request->hasFile('image')) {
-            $detination_path = 'public/images/products';
+          /*$detination_path = 'public/images/products';
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
             $path = $request->file('image')->storeAs($detination_path, $image_name);
-            $producto['imagen'] = $image_name;
+            $producto['imagen'] = $image_name; */
+            $registrar = new Producto();
+            $imagen_produc['imagen'] = time().'_'.$request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('productos',$imagen_produc['imagen']);
+            $registrar->fill($producto);
+            $registrar['id_usuarios'] = Auth::user()->id;
+            $registrar->imagen = $imagen_produc['imagen'];
+            $registrar->concesionado = 0;
+            $registrar->motivo = "";
+            $registrar->save();
+            return redirect('/');
+        } else {
+          return "Agrege una imagen";
         }
-        $registrar = new Producto();
-        $registrar->fill($producto);
-        $registrar['id_usuarios'] = Auth::user()->id;
-        $registrar->concesionado = 0;
-        $registrar->motivo = "";
-        $registrar->save();
-        return redirect('/');
+
+
     }
 
     /**

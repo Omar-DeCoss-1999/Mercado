@@ -35,7 +35,9 @@
     <tbody>
         @forelse ($producto as $productos)
         <tr>
-            <td><img src="{{asset('/productos_img/'.$productos->imagen)}}" width="80px" height="80px"></td>
+            <td>
+              <img src="{{ asset('storage').'/'.'productos'.'/'.$productos->imagen }}" width="150px" height="150px">
+            </td>
             <td>{{$productos->nombre}}</td>
             <td>{{$productos->descripcion}}</td>
             <td>$ {{$productos->precio}}</td>

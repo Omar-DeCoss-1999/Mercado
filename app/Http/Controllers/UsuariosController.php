@@ -21,7 +21,7 @@ class UsuariosController extends Controller
             $usuario = Usuario::all()
                 ->where('rol', "!=", "Supervisor")
                 ->where('id', "!=", Auth::user()->id);
-            return view('Usuarios.index', compact('usuario')); 
+            return view('Usuarios.index', compact('usuario'));
         } else {
             $usuario = Usuario::all();
             return view('Usuarios.index', compact('usuario'));
@@ -58,18 +58,24 @@ class UsuariosController extends Controller
             $usuario_nuevo['imagen'] = $nombre_imagen;
         } */
         if ($request->hasFile('image')) {
-            $detination_path = 'public/images/users';
+          /*$detination_path = 'public/images/users';
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
             $path = $request->file('image')->storeAs($detination_path, $image_name);
-            $usuario_nuevo['imagen'] = $image_name;
+            $usuario_nuevo['imagen'] = $image_name;*/
+            $usuario_nuevo['password'] = Hash::make($usuario_nuevo['password']);
+            $imagen_usuario['imagen'] = time().'_'.$request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('usuarios',$imagen_usuario['imagen']);
+            $registrar = new Usuario();
+            $registrar->fill($usuario_nuevo);
+            $registrar->imagen = $usuario_nuevo['imagen'];
+            $registrar->activo = 1;
+            $registrar->save();
+            return redirect('/usuarios')->with('success', 'Te has registrado con exito, ¡Bienvenido!');
+        } else {
+          return "Agrege una imagen";
         }
-        $usuario_nuevo['password'] = Hash::make($usuario_nuevo['password']);
-        $registrar = new Usuario();
-        $registrar->fill($usuario_nuevo);
-        $registrar->activo = 1;
-        $registrar->save();
-        return redirect('/usuarios')->with('success', 'Te has registrado con exito, ¡Bienvenido!');
+
     }
 
     /**
@@ -114,21 +120,26 @@ class UsuariosController extends Controller
         } else {
             $valores['password'] = Hash::make($valores['password']);
         }
-        $imagen = $request->file('imagen');
-        if (!is_null($imagen)) {
-            $ruta_imagen = public_path('perfil_img/');
+        if ($request->hasFile('imagen')) {
+          /*$ruta_imagen = public_path('perfil_img/');
             $nombre_imagen = $imagen->getClientOriginalName();
             $imagen->move($ruta_imagen, $nombre_imagen);
-            $new_user['imagen'] = $nombre_imagen;
+            $new_user['imagen'] = $nombre_imagen;*/
+            $imagen_usuario['imagen'] = time().'_'.$request->file('imagen')->getClientOriginalName();
+            $request->file('imagen')->storeAs('usuarios',$imagen_usuario['imagen']);
+            $registrar = Usuario::find($id);
+            $registrar->fill($valores);
+            $registrar->nombre = request()->input('nombre');
+            $registrar->a_paterno = request()->input('a_pat');
+            $registrar->a_materno = request()->input('a_mat');
+            $registrar->correo = request()->input('correo');
+            $registrar->imagen = $imagen_usuario['imagen'];
+            $registrar->save();
+            return redirect('/usuarios');
+        } else {
+          return "Ingrese una imagen para actualizar";
         }
-        $registrar = Usuario::find($id);
-        $registrar->nombre = request()->input('nombre');
-        $registrar->a_paterno = request()->input('a_pat');
-        $registrar->a_materno = request()->input('a_mat');
-        $registrar->correo = request()->input('correo');
-        $registrar->fill($valores);
-        $registrar->save();
-        return redirect('/usuarios');
+
 
     }
 

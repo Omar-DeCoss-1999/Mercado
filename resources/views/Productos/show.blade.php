@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <img src="{{asset('/productos_img/'.$producto->imagen )}}" width="50px" height="50px"></td>
+            <img src="{{ asset('storage').'/'.'productos'.'/'.$producto->imagen }}" width="200px" height="200px">
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

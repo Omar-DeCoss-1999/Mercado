@@ -24,7 +24,7 @@
                   </ul>
                 </div>
               @endif
-            <form action="/register" method="POST">
+            <form action="/register" method="POST" enctype="multipart/form-data">
             @csrf
               <div class="inputBx">
                 <span>Nombre</span>

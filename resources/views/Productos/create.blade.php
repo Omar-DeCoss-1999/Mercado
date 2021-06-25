@@ -41,7 +41,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Imagen del producto:</strong>
-                <input type="file" name="image" class="form-control" placeholder="Seleccione la imagen">
+                <input type="file" name="image" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
