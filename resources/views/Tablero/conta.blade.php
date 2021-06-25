@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <td>Comprobante de pago</td>
-            <td>Producto</>
+            <td>Producto</td>
             <td>Precio</td>
             <td>Acciones</td>
         </tr>
@@ -12,7 +12,11 @@
     <tbody>
         @forelse ($compras as $compra)
         <tr>
-            <td>{{$compra->c_pago}}</td>
+            <td>
+              <center>
+                <img src="{{ asset('storage').'/'.'compro_pago'.'/'.$compra->c_pago }}" width="250px" height="250px">
+              </center>
+            </td>
             <td>{{$compra->nombre}}</td>
             <td>{{$compra->precio}}</td>
             <td>

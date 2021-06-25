@@ -11,16 +11,17 @@ class ProductosComprados extends Producto
     {
         static::addGlobalScope('concesionado', function (Builder $builder){
             $builder->select(
-                'compras.id', 
+                'compras.id',
                 'compras.id_usuarios',
                 'compras.id_productos',
+                'compras.c_pago',
                 'productos.nombre',
                 'productos.imagen',
                 'productos.precio',
-                'compras.compra_autorizada'    
+                'compras.compra_autorizada'
             )->join(
                   'compras',
-                  'compras.id_productos', '=', 'productos.id'  
+                  'compras.id_productos', '=', 'productos.id'
             );
         });
     }
