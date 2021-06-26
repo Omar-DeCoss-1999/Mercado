@@ -5,6 +5,7 @@
         <div class="pull-left">
             <h2>Compra</h2>
             <!-- Acá va la imagen del comprobante -->
+            <!-- esta hoja no nos sirve -->
             <h4> <img src="{{ $compras->c_pago }}" width="50px" height="50px">
         </div>
     </div>

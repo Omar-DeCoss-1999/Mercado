@@ -21,6 +21,7 @@
             <td>{{$productos->nombre}}</td>
             <td>${{$productos->precio}}</td>
             <td>
+              @if($productos->c_pago == "No hay comprobante")
                 <form action="/comprobante/{{$productos->id}}" method="POST"
                   enctype="multipart/form-data">
                     @csrf
@@ -30,7 +31,11 @@
                         <input type="number" name="calificacion">
                     </label>
                     <button type="submit" class="btn btn-success">Enviar comprobante</button>
+                    <br>{!! $errors->first('correo', '<span class="help-block">:message</span>')!!}
                 </form>
+                @else
+                  Ya mandaste el comprobante de compra de este producto
+                @endif
             </td>
         </tr>
         @empty

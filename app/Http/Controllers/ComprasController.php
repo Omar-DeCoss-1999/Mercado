@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ComprasController extends Controller
 {
@@ -48,6 +49,7 @@ class ComprasController extends Controller
         //$comprando->c_pago = $request->input('imagen')
         $comprando->calificacion = 0;
         $comprando->c_pago = 'No hay comprobante';
+        $comprando->comentarios_conta = '';
         $comprando->save();
         $correo = new ContactanosMailable;
         Mail::to('ruizomar003@gmail.com')->send($correo);
@@ -100,10 +102,11 @@ class ComprasController extends Controller
           $productos_actuales->cantidad = $restar_producto;
           $productos_actuales->save();
 
-          return redirect('/');
+          return redirect('/productosComprados');
 
         } else {
-          return "Ingrese un comprobante de pago";
+          //return "Ingrese un comprobante de pago";
+          return back()->withErrors(['correo' => '¡Ingrese un comprobante de pago!']);
         }
     }
 
@@ -117,4 +120,33 @@ class ComprasController extends Controller
     {
         //
     }
+
+    public function proceso_autorizacion(Request $request, $id){
+
+        $datos_actu = Compra::find($id);
+
+        //$url = app_path("compro_pago/".$datos_actu->c_pago);
+        unlink(storage_path().'/app/public/compro_pago/'.$datos_actu->c_pago);
+        //File::delete($filename);
+        //Storage::delete($url);
+        //$url->delete();
+        $datos_actu->c_pago = 'No hay comprobante';
+        $datos_actu->save();
+        //File::delete($url);
+        //return $url;
+        return redirect('/Tablero.conta');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

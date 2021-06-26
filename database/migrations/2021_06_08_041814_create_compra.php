@@ -16,9 +16,10 @@ class CreateCompra extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->timestamp('h_compra');
-            $table->boolean('compra_autorizada');
             $table->string('c_pago', 100);
             $table->float('calificacion');
+            $table->boolean('compra_autorizada');
+            $table->string('comentarios_conta', 150);
             $table->unsignedInteger('id_productos');
             $table->unsignedInteger('id_usuarios');
         });

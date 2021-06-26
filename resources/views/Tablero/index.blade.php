@@ -197,7 +197,7 @@
                                 <img class="img-profile rounded-circle" src="<?php echo asset('img/undraw_profile.svg') ?>">
                                 @else
                                 <span style="color:#fff;" class="mr-2 d-none d-lg-inline small">{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})</span>
-                                <img class="img-profile rounded-circle" src="<?php echo asset('img/undraw_profile.svg') ?>">
+                                <img src="{{ asset('storage').'/'.'usuarios'.'/'.auth()->user()->imagen }}" width="55px" height="55px"> 
                                 @endif
                             </a>
                             <!-- Dropdown - User Information -->

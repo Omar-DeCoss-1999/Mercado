@@ -11,6 +11,7 @@
     </thead>
     <tbody>
         @forelse ($compras as $compra)
+        @if($compra->c_pago != "No hay comprobante")
         <tr>
             <td>
               <center>
@@ -21,7 +22,7 @@
             <td>{{$compra->precio}}</td>
             <td>
                 <!-- <a href="/autorizar/{{$compra->id}}" type="submit" class="btn btn-primary">Autorizar compra</a> -->
-                <form action="">
+                <form action="/autorizacion/{{$compra->id}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <strong>En caso de ser rechazado</strong>
                     <input type="text" name="motivos" class="form-control" placeholder="Ingresa los motivos aquí">
@@ -31,6 +32,7 @@
                 </form>
             </td>
         </tr>
+        @endif
         @empty
         <tr align="center">
             <td colspan="3">Sin registro</td>
