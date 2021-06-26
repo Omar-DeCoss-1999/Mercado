@@ -68,6 +68,7 @@ Route::get('autorizar/{id}', 'ProductosController@autorizarCompra');
 
 Route::get('register', 'RegistrarNuevoUsuario@registroNuevo');
 Route::post('register', 'RegistrarNuevoUsuario@registrarBD');
+Route::get('searchEmail/{email}', 'RegistrarNuevoUsuario@search');
 
 Route::get('usuarios', 'UsuariosController@index');
 Route::get('usuarios/create',' UsuariosController@create');

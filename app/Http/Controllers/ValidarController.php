@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use App\Models\Producto;
-use App\Models\ProductosComprados;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,16 +27,6 @@ class ValidarController extends Controller
             $password_base = $usuario->password;
             if (Hash::check($password_ingresado, $password_base)) {
                 Auth::login($usuario);
-                if ($usuario->rol == 'Contador') {
-                    $compras = ProductosComprados::all();
-                    return view('Tablero.conta', compact('compras'));
-                }
-                if ($usuario->rol == 'Supervisor') {
-                    $contaP = Producto::count();
-                    $contaC = Categoria::count();
-                    $contaU = Usuario::count();
-                    return view('Roles.supervisor', compact('contaP', 'contaC', 'contaU'));
-                }
                 return redirect('/');
             } else {
                 return back()->withErrors(['correo' => 'Estas credenciales no coinciden con nuestros registros']);
