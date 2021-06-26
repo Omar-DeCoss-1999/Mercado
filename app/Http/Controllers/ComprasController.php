@@ -48,6 +48,7 @@ class ComprasController extends Controller
         $comprando->compra_autorizada = false;
         //$comprando->c_pago = $request->input('imagen')
         $comprando->calificacion = 0;
+        $comprando->cantidad = $request->input('cantidad');
         $comprando->c_pago = 'No hay comprobante';
         $comprando->comentarios_conta = '';
         $comprando->save();
@@ -94,6 +95,7 @@ class ComprasController extends Controller
           //se hace la consulta y actualizacion del nombre del comprobante
           $datos_actu = Compra::find($id);
           $datos_actu->c_pago = $compro_pago['c_pago'];
+          $datos_actu->calificacion = $request->input('calificacion');
           $datos_actu->save();
           //se hace la consulta y disminucion del numero de articulos disponibles
           $productos_actuales = Producto::find($datos_actu->id_productos);
@@ -121,24 +123,27 @@ class ComprasController extends Controller
         //
     }
 
-    public function proceso_autorizacion(Request $request, $id){
-
-        $datos_actu = Compra::find($id);
-        unlink(storage_path().'/app/public/compro_pago/'.$datos_actu->c_pago);
-        $datos_actu->c_pago = 'No hay comprobante';
-        $datos_actu->save();
-        $productos_actuales = Producto::find($datos_actu->id_productos);
-        $suma_stock = $productos_actuales->cantidad;
-        $suma_stock++;
-        $productos_actuales->cantidad = $suma_stock;
-        $productos_actuales->save();
-
-        return redirect('/');
+    public function proceso_autorizacion_rechazo(Request $request, $id){
+        if($request->input('motivos') != "") {
+          $datos_actu = Compra::find($id);
+          unlink(storage_path().'/app/public/compro_pago/'.$datos_actu->c_pago);
+          $datos_actu->c_pago = 'No hay comprobante';
+          $datos_actu->comentarios_conta = $request->input('motivos');
+          $datos_actu->save();
+          $productos_actuales = Producto::find($datos_actu->id_productos);
+          $suma_stock = $productos_actuales->cantidad;
+          $suma_stock++;
+          $productos_actuales->cantidad = $suma_stock;
+          $productos_actuales->save();
+          return redirect('/');
+        } else {
+          return back()->withErrors(['correo' => '¡Ingrese un motivo de rechazo!']);
+        }
     }
 
-
-
-
+    public function proceso_autorizacion_aceptado(Request $request, $id){
+      return $id;
+    }
 
 
 

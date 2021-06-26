@@ -6,6 +6,7 @@
             <td>Comprobante de pago</td>
             <td>Producto</td>
             <td>Precio</td>
+            <td>Cantidad</td>
             <td>Acciones</td>
         </tr>
     </thead>
@@ -19,16 +20,18 @@
               </center>
             </td>
             <td>{{$compra->nombre}}</td>
-            <td>{{$compra->precio}}</td>
+            <td>${{$compra->precio}}</td>
+            <td>{{$compra->cantidad}}</td>
             <td>
                 <!-- <a href="/autorizar/{{$compra->id}}" type="submit" class="btn btn-primary">Autorizar compra</a> -->
-                <form action="/autorizacion/{{$compra->id}}" method="POST" enctype="multipart/form-data">
+                <form action="/autorizacion_rechazo/{{$compra->id}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <strong>En caso de ser rechazado</strong>
                     <input type="text" name="motivos" class="form-control" placeholder="Ingresa los motivos aquí">
                     <br>
                     <input type="submit" class="btn btn-danger" value="Rechazar">
-                    <a href="" type="submit" class="btn btn-primary">Autorizar compra</a>
+                    <a href="/autorizacion_aceptado/{{$compra->id}}" type="submit" class="btn btn-primary">Autorizar compra</a>
+                    <br>{!! $errors->first('correo', '<span class="help-block">:message</span>')!!}
                 </form>
             </td>
         </tr>

@@ -82,7 +82,8 @@ Route::get('editar/{id}', 'CategoriasController@edit');
 
 Route::put('comprobante/{id}', 'ComprasController@update');
 
-Route::post('autorizacion/{id}', 'ComprasController@proceso_autorizacion');
+Route::post('autorizacion_rechazo/{id}', 'ComprasController@proceso_autorizacion_rechazo');
+Route::get('autorizacion_aceptado/{id}', 'ComprasController@proceso_autorizacion_aceptado');
 
 Route::get('contactanos', function(){
     $correo = new ContactanosMailable;

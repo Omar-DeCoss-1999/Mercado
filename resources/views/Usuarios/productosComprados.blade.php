@@ -9,6 +9,7 @@
             <td>Imagen</td>
             <td>Producto</td>
             <td>Precio</td>
+            <td>Cantidad</td>
             <td>Acciones</td>
         </tr>
     </thead>
@@ -20,6 +21,7 @@
             </td>
             <td>{{$productos->nombre}}</td>
             <td>${{$productos->precio}}</td>
+            <td>{{$productos->cantidad}}</td>
             <td>
               @if($productos->c_pago == "No hay comprobante")
                 <form action="/comprobante/{{$productos->id}}" method="POST"
@@ -28,10 +30,20 @@
                     @method('PUT')
                     <input type="file" name="captura">
                     <label>Calificación:
-                        <input type="number" name="calificacion">
+                        <select name="calificacion">
+                            <option value="1">Muy mala</option>
+                            <option value="2">Mala</option>
+                            <option value="3">Regular</option>
+                            <option value="4">Buena</option>
+                            <option value="5">Excelente</option>
+                        </select>
                     </label>
                     <button type="submit" class="btn btn-success">Enviar comprobante</button>
                     <br>{!! $errors->first('correo', '<span class="help-block">:message</span>')!!}
+                    @if($productos->comentarios_conta != "")
+                      <br>No se pudo completa la compra: {{$productos->comentarios_conta}}
+                      <br>Intentelo de nuevo
+                    @endif
                 </form>
                 @else
                   Ya mandaste el comprobante de compra de este producto

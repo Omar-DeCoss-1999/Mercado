@@ -50,6 +50,7 @@
                 @can('comprar', $productos)
                 <form action="/comprar/{{$productos->id}}" method="post">
                     @csrf
+                    <input type="number" name="cantidad" min="1" step="1" pattern="\d+" placeholder="Cantidad de productos">
                     <input type="submit" class="btn btn-success" value="Comprar">
                 </form>
                 @endcan

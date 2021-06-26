@@ -16,6 +16,7 @@ class ProductosComprados extends Producto
                 'compras.id_productos',
                 'compras.c_pago',
                 'compras.comentarios_conta',
+                'compras.cantidad',
                 'productos.nombre',
                 'productos.imagen',
                 'productos.precio',

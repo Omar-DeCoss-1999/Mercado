@@ -17,6 +17,7 @@ class CreateCompra extends Migration
             $table->id()->autoIncrement();
             $table->timestamp('h_compra');
             $table->string('c_pago', 100);
+            $table->float('cantidad');
             $table->float('calificacion');
             $table->boolean('compra_autorizada');
             $table->string('comentarios_conta', 150);
