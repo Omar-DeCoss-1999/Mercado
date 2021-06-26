@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
+use App\Models\ProductosComprados;
+use App\Models\Usuario;
+
 class CategoriasController extends Controller
 {
     /**
@@ -16,11 +19,19 @@ class CategoriasController extends Controller
     public function index()
     {
         $category = Categoria::all();
-/*         $prod = Producto::all();
-        if(Auth::user() == null){
-            return view('Roles.anonimo', compact('category', 'prod'));
-        } */
-        return view('Categorias.index', compact('category'));
+        if (Auth::user() == null || Auth::user()->rol == "Cliente") {
+            return view('Categorias.index', compact('category'));
+        }
+        if (Auth::user()->rol == 'Contador') {
+            $compras = ProductosComprados::all();
+            return view('Tablero.conta', compact('compras'));
+        }
+        if (Auth::user()->rol == 'Supervisor') {
+            $contaP = Producto::count();
+            $contaC = Categoria::count();
+            $contaU = Usuario::count();
+            return view('Roles.supervisor', compact('contaP', 'contaC', 'contaU'));
+        }
     }
 
     /**
@@ -43,21 +54,21 @@ class CategoriasController extends Controller
     {
         $categoria = new Categoria();
         $imagen = $request->file('imagen');
-        if (!is_null($imagen)){
+        if (!is_null($imagen)) {
             $ruta_imagen = public_path('images/images_categorias/');
             $nombre_imagen = $imagen->getClientOriginalName();
-            $imagen->move($ruta_imagen,$nombre_imagen);
-            $categoria['imagen']=$nombre_imagen;
-        } 
-/*         if($request->hasFile('image')){
+            $imagen->move($ruta_imagen, $nombre_imagen);
+            $categoria['imagen'] = $nombre_imagen;
+        }
+        /*         if($request->hasFile('image')){
             $detination_path = 'public/images/category';
             $image = $request->file('image');
             $image_name = $image->getClientOriginalName();
             $path = $request->file('image')->storeAs($detination_path, $image_name);
             $categoria['imagen'] = $image_name;
         } */
-        $categoria->nombre=$request->input('nombre');
-        $categoria->descripcion=$request->input('descripcion');
+        $categoria->nombre = $request->input('nombre');
+        $categoria->descripcion = $request->input('descripcion');
         $categoria->imagen = $request->input('imagen');
         $categoria->activa = 1;
         $categoria->save();
@@ -73,7 +84,7 @@ class CategoriasController extends Controller
     public function show($id)
     {
         $categoria = Categoria::find($id);
-        return view('Categorias.show',compact('categoria'));
+        return view('Categorias.show', compact('categoria'));
     }
 
     /**
@@ -85,7 +96,7 @@ class CategoriasController extends Controller
     public function edit($id)
     {
         $categoria = Categoria::find($id);
-        return view('Categorias.edit',compact('categoria'));
+        return view('Categorias.edit', compact('categoria'));
     }
 
     /**
@@ -98,8 +109,8 @@ class CategoriasController extends Controller
     public function update(Request $request, $id)
     {
         $categoria = Categoria::find($id);
-        $categoria->nombre=$request->input('nombre');
-        $categoria->descripcion=$request->input('descripcion');
+        $categoria->nombre = $request->input('nombre');
+        $categoria->descripcion = $request->input('descripcion');
         $categoria->imagen = $request->input('imagen');
         $categoria->activa = 1;
         $categoria->save();
