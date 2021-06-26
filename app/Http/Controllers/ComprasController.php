@@ -124,17 +124,16 @@ class ComprasController extends Controller
     public function proceso_autorizacion(Request $request, $id){
 
         $datos_actu = Compra::find($id);
-
-        //$url = app_path("compro_pago/".$datos_actu->c_pago);
         unlink(storage_path().'/app/public/compro_pago/'.$datos_actu->c_pago);
-        //File::delete($filename);
-        //Storage::delete($url);
-        //$url->delete();
         $datos_actu->c_pago = 'No hay comprobante';
         $datos_actu->save();
-        //File::delete($url);
-        //return $url;
-        return redirect('/Tablero.conta');
+        $productos_actuales = Producto::find($datos_actu->id_productos);
+        $suma_stock = $productos_actuales->cantidad;
+        $suma_stock++;
+        $productos_actuales->cantidad = $suma_stock;
+        $productos_actuales->save();
+
+        return redirect('/');
     }
 
 
