@@ -48,6 +48,7 @@ class ComprasController extends Controller
             $comprando->h_compra = date('Y-m-d');
             $comprando->id_usuarios = auth()->user()->id;
             $comprando->compra_autorizada = false;
+            $comprando->pagado_clien = false;
             //$comprando->c_pago = $request->input('imagen')
             $comprando->calificacion = 0;
             $comprando->cantidad = $request->input('cantidad');

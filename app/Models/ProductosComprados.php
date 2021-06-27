@@ -18,6 +18,7 @@ class ProductosComprados extends Producto
                 'compras.comentarios_conta',
                 'compras.cantidad',
                 'compras.compra_autorizada',
+                'compras.pagado_clien',
                 'productos.nombre',
                 'productos.imagen',
                 'productos.precio'

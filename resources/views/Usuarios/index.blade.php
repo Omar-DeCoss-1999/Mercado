@@ -38,7 +38,7 @@
                 <a type="submit" class="btn btn-success" href="/restablecer/{{$usuarios->id}}">Restablecer contraseña</a>
                 @endif
                 @if(Auth::user()->rol == 'Contador')
-                <a class="btn btn-success" href="/usuarios/{{$usuarios->id}}/show">Generar pago</a>
+                <a class="btn btn-success" href="/usuarios_conta/{{$usuarios->id}}">Generar pago</a>
                 @endif
             </td>
         </tr>

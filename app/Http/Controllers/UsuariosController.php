@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
+use App\Models\Compra;
+use App\Models\Pago;
+use App\Models\ProductosComprados;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class UsuariosController extends Controller
@@ -179,4 +183,37 @@ class UsuariosController extends Controller
             return redirect('/usuarios');
         }
     }
+
+    public function mostrar_conta(Request $request, $id) {
+      $produ_elegidos = ProductosComprados::all()
+          ->where('id_usuarios', $id)
+          ->where('compra_autorizada', 1)
+          ->where('pagado_clien', 0);
+       return view('Usuarios.show', compact('produ_elegidos'));
+    }
+
+    public function pago_cliente(Request $request, $id1, $id2) {
+        if(request()->input('nota') != ''){
+          $produ_cambiar = Compra::all();
+          foreach($produ_cambiar as $valor) {
+            $valor->pagado_clien = true;
+            $valor->save();
+          }
+          $registrar = new Pago();
+          if(request()->input('fletes') == ''){
+            $registrar->pago = $id1;
+          } else {
+            $registrar->pago = intval($id1) - intval(request()->input('fletes'));
+          }
+          $registrar->nota = request()->input('nota');
+          $registrar->autorizacion = true;
+          $registrar->recibido = false;
+          $registrar->id_usuarios = $id2;
+          $registrar->save();
+          return redirect('/usuarios');
+        } else {
+          return back()->withErrors(['correo' => '¡Ingrese un nota!']);
+        }
+    }
+    
 }

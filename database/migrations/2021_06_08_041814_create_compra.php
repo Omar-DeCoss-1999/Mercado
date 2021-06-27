@@ -20,6 +20,7 @@ class CreateCompra extends Migration
             $table->float('cantidad');
             $table->float('calificacion');
             $table->boolean('compra_autorizada');
+            $table->boolean('pagado_clien');
             $table->string('comentarios_conta', 150);
             $table->unsignedInteger('id_productos');
             $table->unsignedInteger('id_usuarios');
