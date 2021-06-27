@@ -103,6 +103,44 @@
                     </div>
                 </div>
             </li>
+            @if(Auth::user()->rol == 'Contador')
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Productos vendidos</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/">Ver</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/usuarios">Ver</a>
+                    </div>
+                </div>
+            </li>
+
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pagos a realizar</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/">Ver</a>
+                    </div>
+                </div>
+            </li>
+            @endif
             @endif
             @endif
 
@@ -197,7 +235,7 @@
                                 <img class="img-profile rounded-circle" src="<?php echo asset('img/undraw_profile.svg') ?>">
                                 @else
                                 <span style="color:#fff;" class="mr-2 d-none d-lg-inline small">{{ auth()->user()->nombre }} ({{ auth()->user()->rol }})</span>
-                                <img src="{{ asset('storage').'/'.'usuarios'.'/'.auth()->user()->imagen }}" width="55px" height="55px"> 
+                                <img src="{{ asset('storage').'/'.'usuarios'.'/'.auth()->user()->imagen }}" width="55px" height="55px">
                                 @endif
                             </a>
                             <!-- Dropdown - User Information -->

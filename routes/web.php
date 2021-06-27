@@ -61,6 +61,7 @@ Route::put('productos/{id}/concesionar', 'ProductosController@concesionar');
 Route::put('productos/{id}/motivo', 'ProductosController@motivo');
 
 Route::post('comprar/{id}', 'ComprasController@store');
+Route::post('eliminarCarrito/{id}', 'ComprasController@destroy');
 
 Route::get('productosComprados', 'ProductosController@comprasProducto');
 
