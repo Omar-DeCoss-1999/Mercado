@@ -68,14 +68,14 @@
         <div class="content">
             <h3>Productos</h3>
             <p>Actualmente se encuentran: <strong>{{$contaP}}</strong> productos registrados en el sistema</p>
-            <a href="/categorias">Ver</a>
+            <a href="/crearCategoria">Ver</a>
         </div>
     </div>
     <div class="card2">
         <div class="content">
             <h3>Categorías</h3>
             <p>Actualmente se encuentran: <strong>{{$contaC}}</strong> categorías registrados en el sistema</p>
-            <a href="/categorias">Ver</a>
+            <a href="/crearCategoria">Ver</a>
         </div>
     </div>
     <div class="card3">
