@@ -51,7 +51,11 @@
                 Catalogo
             </div>
             @if(Auth::user() == null)
+<<<<<<< HEAD
                 @yield('desplegable')
+=======
+            @yield('desplegable')
+>>>>>>> 8fb026cd45d432e69536e94b14ad70dcf6f9579c
             @elseif(Auth::user()->rol == 'Supervisor')
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
