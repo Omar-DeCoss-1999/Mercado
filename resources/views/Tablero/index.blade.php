@@ -51,11 +51,7 @@
                 Catalogo
             </div>
             @if(Auth::user() == null)
-<<<<<<< HEAD
-                @yield('desplegable')
-=======
             @yield('desplegable')
->>>>>>> 8fb026cd45d432e69536e94b14ad70dcf6f9579c
             @elseif(Auth::user()->rol == 'Supervisor')
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -65,7 +61,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/">Ver</a>
+                        <a class="collapse-item" href="/categoria">Ver</a>
                     </div>
                 </div>
             </li>
@@ -77,7 +73,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/">Ver</a>
+                        <a class="collapse-item" href="/categoria">Ver</a>
                     </div>
                 </div>
             </li>
@@ -102,7 +98,7 @@
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Ver</a>
+                        <a class="collapse-item" href="/bitacoras">Ver</a>
                     </div>
                 </div>
             </li>

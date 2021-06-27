@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductosController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -87,6 +88,8 @@ Route::get('autorizacion_aceptado/{id}', 'ComprasController@proceso_autorizacion
 Route::get('usuarios_conta/{id}', 'UsuariosController@mostrar_conta');
 Route::get('pago_cliente/{id1}/{id2}', 'UsuariosController@pago_cliente');
 Route::get('aceptar_pago/{id}', 'ProductosController@aceptar_pago');
+
+Route::get('bitacora', 'ProductosController@bitacoras');
 
 Route::get('contactanos', function(){
     $correo = new ContactanosMailable;

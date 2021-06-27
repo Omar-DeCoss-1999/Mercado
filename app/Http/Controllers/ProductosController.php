@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Usuario;
@@ -231,5 +232,8 @@ class ProductosController extends Controller
         return redirect()->back();
     }
 
-
+    public function bitacora(){
+        $resultado = Bitacora::all();
+        return view('Usuarios.bitacoras', compact('resultado'));
+    }
 }
