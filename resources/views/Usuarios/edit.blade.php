@@ -8,6 +8,7 @@
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="/usuarios">Regresar</a>
+            <br> <center> {!! $errors->first('correo', '<span class="help-block">:message</span>')!!} </center>
         </div>
     </div>
 </div>

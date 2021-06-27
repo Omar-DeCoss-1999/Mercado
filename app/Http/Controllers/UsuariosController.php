@@ -73,7 +73,7 @@ class UsuariosController extends Controller
             $registrar->save();
             return redirect('/usuarios')->with('success', 'Te has registrado con exito, ¡Bienvenido!');
         } else {
-          return "Agrege una imagen";
+            return "Agrege una imagen"
         }
 
     }
@@ -137,7 +137,7 @@ class UsuariosController extends Controller
             $registrar->save();
             return redirect('/usuarios');
         } else {
-          return "Ingrese una imagen para actualizar";
+          return back()->withErrors(['correo' => '¡Ingrese una imagen para actualizar!']);
         }
 
 
