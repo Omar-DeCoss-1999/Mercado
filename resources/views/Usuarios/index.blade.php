@@ -2,7 +2,9 @@
 
 @section('cartas')
 <h2>Usuarios exitentes</h2>
+@if(Auth::user()->rol == 'Supervisor')
 <a href="/usuarios/create" class="btn btn-success">Agregar una nuevo usuario</a>
+@endif
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -23,8 +25,8 @@
             <td>{{$usuarios->correo}}</td>
             <td>{{$usuarios->rol}}</td>
             <td>
+            @can('eliminar', App\Models\Usuario::class)
                 <a class="btn btn-info" href="/usuarios/{{$usuarios->id}}/show">Mostrar</a>
-                @can('eliminar', App\Models\Usuario::class)
                 <form action="/usuarios/delete/{{$usuarios->id}}" method="POST">
                     <a class="btn btn-primary" href="/usuarios/{{$usuarios->id}}/edit">Editar</a>
                     @csrf
@@ -35,11 +37,14 @@
                 @if(Auth::user()->rol == 'Encargado')
                 <a type="submit" class="btn btn-success" href="/restablecer/{{$usuarios->id}}">Restablecer contraseña</a>
                 @endif
+                @if(Auth::user()->rol == 'Contador')
+                <a class="btn btn-success" href="/">Generar pago</a>
+                @endif
             </td>
         </tr>
         @empty
         <tr align="center">
-            <td colspan="3">Sin registro</td>
+            <td colspan="5">Sin registro</td>
         </tr>
         @endforelse
     </tbody>
