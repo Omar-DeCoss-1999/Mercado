@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Usuario;
 use App\Models\Categoria;
 use App\Models\Pregunta;
+use App\Models\Pago;
 use App\Models\ProductosComprados;
 use App\Models\ProductosConsignados;
 use App\Models\ProductosEnCategoria;
@@ -102,8 +103,6 @@ class ProductosController extends Controller
         } else {
           return "Agrege una imagen";
         }
-
-
     }
 
     /**
@@ -203,14 +202,34 @@ class ProductosController extends Controller
     }
 
     public function mispagos(){
-        
+        $mis_pagos = Pago::all()
+            ->where('id_usuarios', Auth::user()->id)
+            ->where('autorizacion', true);
+      return view('Usuarios.mispagos', compact('mis_pagos'));
     }
 
     public function misproductos(){
-
+      $mis_productos = Producto::all()
+          ->where('id_usuarios', Auth::user()->id);
+      return view('Usuarios.misproductos', compact('mis_productos'));
     }
 
-    public function misventas(){
-        
+    public function misventas() {
+      $mis_ventas = DB::table('productos')
+        ->select('productos.imagen', 'productos.nombre', 'productos.descripcion', 'productos.id_usuarios', 'productos.cantidad', 'productos.precio')
+        ->join('compras', 'productos.id', '=', 'compras.id_productos')
+        ->where('productos.id_usuarios', Auth::user()->id)
+        ->where('compras.compra_autorizada', true)
+        ->get();
+      return view('Usuarios.misventas', compact('mis_ventas'));
     }
+
+    public function aceptar_pago($id){
+        $actu_pago = Pago::find($id);
+        $actu_pago->recibido = true;
+        $actu_pago->save();
+        return redirect()->back();
+    }
+
+
 }

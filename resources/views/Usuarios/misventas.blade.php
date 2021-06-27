@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($producto as $productos)
+        @forelse ($mis_ventas as $productos)
         <tr>
             <td>
               <img src="{{ asset('storage').'/'.'productos'.'/'.$productos->imagen }}" width="150px" height="150px">

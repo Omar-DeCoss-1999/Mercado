@@ -2,20 +2,14 @@
 @section('cartas')
 <table class="table table-bordered">
     <tr>
-        <th>Precio</th>
-        <th>Fletes</th>
         <th>Comentarios</th>
         <th>Total</th>
         <th>Estado</th>
     </tr>
-    @forelse ($pagos as $pagos_usu)
+    @forelse ($mis_pagos as $pagos_usu)
     <tr>
-        <td> ${{$pagos_usu->monto}} </td>
-        <td> ${{$pagos_usu->descuento}} </td>
-        <td>
-            {{$pagos_usu->nota}}
-        </td>
-        <td> ${{$pagos_usu->total}} </td>
+        <td> {{$pagos_usu->nota}} </td>
+        <td> ${{$pagos_usu->pago}} </td>
         @if(Auth::user()->rol == "Contador")
         @if($pagos_usu->autorizado == 0)
         <td style="
@@ -28,10 +22,12 @@
         @if($pagos_usu->autorizado == 0)
         <td style="
                 background:rgb(225, 111, 111);">
-            <form action="" method="post">
+            <form action="/aceptar_pago/{{$pagos_usu->id}}" method="get">
                 @csrf
                 @method('PUT')
+                @if($pagos_usu->recibido == 0)
                 <input type="submit" class="btn btn-success" value="Retirar">
+                @endif
             </form>
         </td>
         @else
