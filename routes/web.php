@@ -82,6 +82,11 @@ Route::put('comprobante/{id}', 'ComprasController@update');
 Route::post('autorizacion_rechazo/{id}', 'ComprasController@proceso_autorizacion_rechazo');
 Route::get('autorizacion_aceptado/{id}', 'ComprasController@proceso_autorizacion_aceptado');
 
+Route::get('usuarios_conta/{id}', 'UsuariosController@mostrar_conta');
+
+Route::get('pago_cliente/{id1}/{id2}', 'UsuariosController@pago_cliente');
+
+
 Route::get('contactanos', function(){
     $correo = new ContactanosMailable;
     Mail::to('ruizomar003@gmail.com')->send($correo);

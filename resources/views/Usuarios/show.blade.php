@@ -1,6 +1,7 @@
 @extends('Tablero.index')
 
 @section('cartas')
+@if(Auth::user()->rol != 'Contador')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -45,7 +46,8 @@
         </div>
     </div>
 </div>
-@if(Auth::user->rol == 'Contador')
+@endif
+@if(Auth::user()->rol == 'Contador')
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -56,19 +58,28 @@
         </tr>
     </thead>
     <tbody>
-        <!-- @forelse () -->
+      @php $acumulador = 0; @endphp
+      @php $id_usuario = 0; @endphp
+      <center> {!! $errors->first('correo', '<span class="help-block">:message</span>')!!} </center>
+      @forelse ($produ_elegidos as $produ_elegido)
         <tr>
-
+            <td>{{$produ_elegido->nombre}}</td>
+            <td>${{$produ_elegido->precio}}</td>
+            <td>{{$produ_elegido->cantidad}}</td>
+            <td>${{$produ_elegido->precio * $produ_elegido->cantidad}}</td>
+            @php $acumulador += $produ_elegido->precio * $produ_elegido->cantidad; @endphp
         </tr>
-        <!-- @empty -->
+        @php $id_usuario = $produ_elegido->id_usuarios; @endphp
+        @empty
         <tr align="center">
-            <td colspan="4">Sin registro</td>
+            <td colspan="5">Sin registro</td>
         </tr>
-        <!-- @endforelse -->
+        @endforelse
     </tbody>
 </table>
-<label>Total a pagar = </label>
-<form action="" method="post">
+<label>Total a pagar = $@php echo($acumulador); @endphp</label>
+<form action="{{ url('pago_cliente', ['id1' => $acumulador, 'id2' => $id_usuario]) }}" method="get">
+  @csrf
     <label>Gatos extras:</label>
     <input type="text" name="fletes" placeholder="Gastos extras">
     <label>Nota:</label>
