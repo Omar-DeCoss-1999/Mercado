@@ -60,6 +60,9 @@ Route::post('comprar/{id}', 'ComprasController@store');
 Route::post('eliminarCarrito/{id}', 'ComprasController@destroy');
 
 Route::get('productosComprados', 'ProductosController@comprasProducto');
+Route::get('mispagos', 'ProductosController@mispagos');
+Route::get('misproductos', 'ProductosController@misproductos');
+Route::get('misventas', 'ProductosController@misventas');
 
 Route::get('autorizar/{id}', 'ProductosController@autorizarCompra');
 

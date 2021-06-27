@@ -201,4 +201,16 @@ class ProductosController extends Controller
         $compras = ProductosComprados::find($id);
         return view('Tablero.autorizar', compact('compras'));
     }
+
+    public function mispagos(){
+        
+    }
+
+    public function misproductos(){
+
+    }
+
+    public function misventas(){
+        
+    }
 }
