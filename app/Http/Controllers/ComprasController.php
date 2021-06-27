@@ -120,7 +120,9 @@ class ComprasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Compra::destroy($id);
+        return redirect()->back();
+
     }
 
     public function proceso_autorizacion_rechazo(Request $request, $id){
