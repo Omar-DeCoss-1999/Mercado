@@ -44,9 +44,8 @@
           @csrf
           <button type="submit" class="btn btn-danger">Eliminar</button>
         </form>
-          {!! $errors->first('correo', '<span class="help-block">:message</span>')!!}
           @if($productos->comentarios_conta != "")
-          <br>No se pudo completa la compra: {{$productos->comentarios_conta}}
+          No se pudo completa la compra: {{$productos->comentarios_conta}}
           <br>Intentelo de nuevo
           @endif
 
