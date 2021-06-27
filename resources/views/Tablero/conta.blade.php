@@ -38,7 +38,7 @@
         @endif
         @empty
         <tr align="center">
-            <td colspan="3">Sin registro</td>
+            <td colspan="5">Sin registro</td>
         </tr>
         @endforelse
     </tbody>
