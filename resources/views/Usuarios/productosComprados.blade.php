@@ -14,6 +14,7 @@
         </tr>
     </thead>
     <tbody>
+      <br> <center> {!! $errors->first('correo', '<span class="help-block">:message</span>')!!} </center>
         @forelse ($producto as $productos)
         <tr>
             <td>
@@ -39,7 +40,6 @@
                         </select>
                     </label>
                     <button type="submit" class="btn btn-success">Enviar comprobante</button>
-                    <br>{!! $errors->first('correo', '<span class="help-block">:message</span>')!!}
                     @if($productos->comentarios_conta != "")
                       <br>No se pudo completa la compra: {{$productos->comentarios_conta}}
                       <br>Intentelo de nuevo
