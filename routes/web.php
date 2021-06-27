@@ -1,10 +1,5 @@
 <?php
 
-use App\Http\Controllers\CategoriasController;
-use App\Http\Controllers\ProductosController;
-use App\Http\Controllers\UsuariosController;
-use App\Http\Controllers\AutenticarIngreso;
-use App\Http\Controllers\RegistrarNuevoUsuario;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
@@ -28,6 +23,7 @@ Route::get('productos/{id_categorias}/index', 'ProductosController@index');
 Route::get('crearProducto', 'ProductosController@create');
 Route::get('crearCategoria', 'CategoriasController@create');
 Route::post('producto', 'ProductosController@store');
+Route::get('categorias', 'CategoriasController@index');
 Route::post('categorias', 'CategoriasController@store');
 Route::put('categorias/{id}', 'CategoriasController@update');
 Route::put('actualizarProducto/{id}', 'ProductosController@update');

@@ -95,7 +95,7 @@
           }
         }
       }
-      xmlhttp.open("GET", "http://mercado.local/searchEmail/" + correo, true);
+      xmlhttp.open("GET", "https://mercadolocal2021.000webhostapp.com//searchEmail/" + correo, true);
       xmlhttp.send();
     }
 
