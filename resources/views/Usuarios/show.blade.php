@@ -45,5 +45,36 @@
         </div>
     </div>
 </div>
+@if(Auth::user->rol == 'Contador')
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Producto</td>
+            <td>Precio</td>
+            <td>Cantidad</td>
+            <td>TOTAL</td>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- @forelse () -->
+        <tr>
 
+        </tr>
+        <!-- @empty -->
+        <tr align="center">
+            <td colspan="4">Sin registro</td>
+        </tr>
+        <!-- @endforelse -->
+    </tbody>
+</table>
+<label>Total a pagar = </label>
+<form action="" method="post">
+    <label>Gatos extras:</label>
+    <input type="text" name="fletes" placeholder="Gastos extras">
+    <label>Nota:</label>
+    <input type="text" name="nota" placeholder="Ingrese una nota">
+    <input type="submit" value="Pagar">
+</form>
+
+@endif
 @endsection
