@@ -33,6 +33,7 @@
         </tr>
     </thead>
     <tbody>
+      <br> <center> {!! $errors->first('correo', '<span class="help-block">:message</span>')!!} </center>
         @forelse ($producto as $productos)
         <tr>
             <td>
@@ -51,7 +52,7 @@
                 <form action="/comprar/{{$productos->id}}" method="post">
                     @csrf
                     <input type="number" name="cantidad" min="1" step="1" pattern="\d+" placeholder="Cantidad de productos">
-                    <input type="submit" class="btn btn-success" value="Comprar">
+                    <br><input type="submit" class="btn btn-success" value="Comprar">
                 </form>
                 @endcan
                 @can('delete', $productos)
@@ -60,7 +61,7 @@
                     <input type="submit" class="btn btn-danger" value="Eliminar">
                 </form>
                 @endcan
-                <a class="btn btn-info" href="">Validar</a>
+                <!-- <a class="btn btn-info" href="">Validar</a> -->
             </td>
         </tr>
         @empty

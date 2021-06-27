@@ -41,20 +41,25 @@ class ComprasController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $comprando = new Compra();
-        $comprando->id_productos = $id;
-        $comprando->h_compra = date('Y-m-d');
-        $comprando->id_usuarios = auth()->user()->id;
-        $comprando->compra_autorizada = false;
-        //$comprando->c_pago = $request->input('imagen')
-        $comprando->calificacion = 0;
-        $comprando->cantidad = $request->input('cantidad');
-        $comprando->c_pago = 'No hay comprobante';
-        $comprando->comentarios_conta = '';
-        $comprando->save();
-        $correo = new ContactanosMailable;
-        Mail::to('ruizomar003@gmail.com')->send($correo);
-        return redirect()->back();
+        $productos_actuales = Producto::find($id);
+        if ($request->input('cantidad') <= $productos_actuales->cantidad) {
+            $comprando = new Compra();
+            $comprando->id_productos = $id;
+            $comprando->h_compra = date('Y-m-d');
+            $comprando->id_usuarios = auth()->user()->id;
+            $comprando->compra_autorizada = false;
+            //$comprando->c_pago = $request->input('imagen')
+            $comprando->calificacion = 0;
+            $comprando->cantidad = $request->input('cantidad');
+            $comprando->c_pago = 'No hay comprobante';
+            $comprando->comentarios_conta = '';
+            $comprando->save();
+            $correo = new ContactanosMailable;
+            Mail::to('ruizomar003@gmail.com')->send($correo);
+            return redirect()->back();
+        } else {
+            return back()->withErrors(['correo' => '¡La cantidad que ingreso es mayor a la que tenemos!']);
+        }
     }
 
     /**

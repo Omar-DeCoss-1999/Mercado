@@ -11,6 +11,7 @@
         </tr>
     </thead>
     <tbody>
+        <br> <center> {!! $errors->first('correo', '<span class="help-block">:message</span>')!!} </center>
         @forelse ($compras as $compra)
         @if($compra->c_pago != "No hay comprobante")
         <tr>
@@ -31,7 +32,6 @@
                     <br>
                     <input type="submit" class="btn btn-danger" value="Rechazar">
                     <a href="/autorizacion_aceptado/{{$compra->id}}" type="submit" class="btn btn-primary">Autorizar compra</a>
-                    <br>{!! $errors->first('correo', '<span class="help-block">:message</span>')!!}
                 </form>
             </td>
         </tr>
