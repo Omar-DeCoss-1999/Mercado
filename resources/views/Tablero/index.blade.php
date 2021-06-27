@@ -50,8 +50,22 @@
             <div class="sidebar-heading">
                 Catalogo
             </div>
-            @if(Auth::user() == null || Auth::user()->rol == 'Cliente')
-            @yield('desplegable')
+            @if(Auth::user() == null)
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Categorías</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        @forelse ($category as $categorias)
+                        <a class="collapse-item" href="productos/{{$categorias->id}}/index">{{$categorias->nombre}}</a>
+                        @empty
+                        <a class="collapse-item" href="">Sin registro</a>
+                        @endforelse
+                    </div>
+                </div>
+            </li>
             @elseif(Auth::user()->rol == 'Supervisor')
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
