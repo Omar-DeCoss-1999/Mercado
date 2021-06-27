@@ -14,6 +14,7 @@
         <br> <center> {!! $errors->first('correo', '<span class="help-block">:message</span>')!!} </center>
         @forelse ($compras as $compra)
         @if($compra->c_pago != "No hay comprobante")
+        @if($compra->compra_autorizada != 1)
         <tr>
             <td>
               <center>
@@ -35,6 +36,7 @@
                 </form>
             </td>
         </tr>
+        @endif
         @endif
         @empty
         <tr align="center">
