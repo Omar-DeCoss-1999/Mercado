@@ -148,15 +148,10 @@ class ComprasController extends Controller
     }
 
     public function proceso_autorizacion_aceptado(Request $request, $id){
-      return $id;
+        $datos_actu = Compra::find($id);
+        $datos_actu->compra_autorizada = true;
+        $datos_actu->save();
+        return redirect('/');
     }
-
-
-
-
-
-
-
-
 
 }

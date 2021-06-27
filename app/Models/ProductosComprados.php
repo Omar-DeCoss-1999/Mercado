@@ -17,10 +17,10 @@ class ProductosComprados extends Producto
                 'compras.c_pago',
                 'compras.comentarios_conta',
                 'compras.cantidad',
+                'compras.compra_autorizada',
                 'productos.nombre',
                 'productos.imagen',
-                'productos.precio',
-                'compras.compra_autorizada'
+                'productos.precio'
             )->join(
                   'compras',
                   'compras.id_productos', '=', 'productos.id'
