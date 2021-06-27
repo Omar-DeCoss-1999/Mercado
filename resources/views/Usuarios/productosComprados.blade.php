@@ -50,7 +50,11 @@
           @endif
 
         @else
-        Ya mandaste el comprobante de compra de este producto
+          @if($productos->compra_autorizada == 1)
+            Esta compra ya fue autorizada, espere su o sus productos
+          @else
+            Comprobante enviado, espere respuesta
+          @endif
         @endif
       </td>
     </tr>
